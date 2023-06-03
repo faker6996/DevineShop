@@ -1,5 +1,5 @@
 ﻿using MARShop.Core.Entities;
-using MARShop.Infastructure.Persistence.Configurations;
+using MARShop.Infastructure.Persistence.Configurations.Relationship;
 using MARShop.Infastructure.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,21 +14,14 @@ namespace MARShop.Infastructure.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.SetAccountRoleForeignKeys();
-            modelBuilder.SetRolePermissionForeignKeys();
-
+            modelBuilder.SetRelationshipConfig();
             modelBuilder.SeedInitial();
         }
+        public DbSet<Tag> Tags => Set<Tag>();
+        public DbSet<BlogPostTag> BlogPostTags => Set<BlogPostTag>();
+        public DbSet<BlogPost> BlogPosts => Set<BlogPost>();
+        public DbSet<AccountBlogPost> AccountBlogPosts => Set<AccountBlogPost>();
         public DbSet<Account> Accounts => Set<Account>();
-        public DbSet<Media> Medias => Set<Media>();
-        public DbSet<History> Histories => Set<History>();
-        public DbSet<OTP> OTPs => Set<OTP>();
-        public DbSet<Permission> Permissions => Set<Permission>();
-        public DbSet<Role> Roles => Set<Role>();
-        public DbSet<RolePermission> RolePermissions => Set<RolePermission>();
-        public DbSet<Shop> Shops => Set<Shop>();
-        public DbSet<AppInfo> AppInfos => Set<AppInfo>();
-        public DbSet<AccountRole> AccountRoles => Set<AccountRole>();
-
+        public DbSet<Comment> Comments => Set<Comment>();
     }
 }

@@ -1,15 +1,15 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MediatRApi.Handlers
+namespace MARShop.Application
 {
-    public static class Dependencies
+    public static class DDependencies
     {
-        public static IServiceCollection RegisterRequestHandlers(
-            this IServiceCollection services)
+        public static IServiceCollection AddRequestHandlers(
+           this IServiceCollection services)
         {
             return services
-                .AddMediatR(typeof(Dependencies).Assembly);
+                .AddMediatR(typeof(DDependencies).Assembly);
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using MARShop.Core.Common;
 using MARShop.Infastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace MARShop.Infastructure.Repositories.Base
@@ -19,7 +21,8 @@ namespace MARShop.Infastructure.Repositories.Base
             _context = context;
             _db = _context.Set<T>();
         }
-        #region add
+
+        // Create
         public async Task<T> DAddAsync(T entity)
         {
             entity.Created = System.DateTime.Now;
@@ -27,9 +30,8 @@ namespace MARShop.Infastructure.Repositories.Base
             await _db.AddAsync(entity);
             return entity;
         }
-        #endregion
 
-        #region delete
+        // Delete
         public async Task DDeleteAsync(T entity)
         {
             entity.IsDelete = true;
@@ -37,13 +39,13 @@ namespace MARShop.Infastructure.Repositories.Base
         }
         public async Task DeleteByIdAsync(int id)
         {
-            var entity = await _context.Set<T>().FindAsync(id);
+            var entity = await _db.FindAsync(id);
             entity.IsDelete = true;
             _context.Entry(entity).State = EntityState.Modified;
         }
         public async Task DDeleteAsync(Expression<Func<T, bool>> predicate)
         {
-            var listExist = _context.Set<T>().Where(a => a.IsDelete == false);
+            var listExist = _db.Where(a => a.IsDelete == false);
             var listWithCondition = await listExist.Where(predicate).ToListAsync();
             foreach (var item in listWithCondition)
             {
@@ -51,42 +53,28 @@ namespace MARShop.Infastructure.Repositories.Base
                 _context.Entry(item).State = EntityState.Modified;
             }
         }
-        #endregion
 
-        #region update
+        // Update
         public async Task DUpdateAsync(T entity)
         {
             entity.LastModified = System.DateTime.Now;
             entity.IsDelete = false;
             _context.Entry(entity).State = EntityState.Modified;
         }
-        #endregion
 
-        #region get
+        // Get
         public async Task<T> DFistOrDefaultAsync(Func<T, bool> predicate)
         {
-            var listUseCondition = _db.Where(a => a.IsDelete == false);
-            if (!listUseCondition.Any())
-            {
-                return null;
-            }
-
-            var listExist = await listUseCondition.ToListAsync();
-            return listExist.FirstOrDefault(predicate);
+            var item = _db.Where(a=>a.IsDelete==false).FirstOrDefault(predicate);
+            return item;
         }
         public async Task<T> DFistOrDefaultAsync()
         {
-            var listUseCondition = (IQueryable<T>)_db.Where(a => a.IsDelete == false);
-            if (!listUseCondition.Any())
-            {
-                return null;
-            }
-            var listExist = await listUseCondition.ToListAsync();
-            return listExist.First();
+           return await _db.Where(a => a.IsDelete == false).FirstOrDefaultAsync();
         }
-        public async Task<IReadOnlyList<T>> DGetAllAsync()
+        public IQueryable<T> DGetAll()
         {
-            return await _db.Where(a => a.IsDelete == false).ToListAsync();
+            return _db.Where(a => a.IsDelete == false);
         }
         public async Task<IReadOnlyList<T>> DGetPagingAsync(int skip, int pageSize)
         {
@@ -94,23 +82,22 @@ namespace MARShop.Infastructure.Repositories.Base
         }
         public async Task<IReadOnlyList<T>> DGetAsync(Func<T, bool> predicate)
         {
-            var listExist = await _db.Where(a => a.IsDelete == false).ToListAsync();
-            return listExist.Where(predicate).ToList();
-        }
-        public async Task<int> DGetTotalAsync()
-        {
-            return await _db.Where(a => a.IsDelete == false).CountAsync();
+            return await _db.Where(a => a.IsDelete == false && predicate(a)).ToListAsync();
         }
         public async Task<T> DGetByIdAsync(int id)
         {
-            var entity = await _db.FirstOrDefaultAsync(t => t.Id.Equals(id));
-            _context.Entry(entity).State = EntityState.Detached;
+            var entity = await _db.SingleOrDefaultAsync(t => t.Id.Equals(id));
             if (entity?.IsDelete == true)
             {
                 return null;
             }
             return entity;
         }
-        #endregion
+
+        // Count
+        public async Task<int> DCountAsync()
+        {
+            return await _db.Where(a => a.IsDelete == false).CountAsync();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MARShop.Core.Entities;
+﻿using BCrypt.Net;
+using MARShop.Core.Entities;
 using MARShop.Core.Enum;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,12 +16,12 @@ namespace MARShop.Infastructure.Persistence.Seed
             var superAdmin = new Account()
             {
                 Id = 1,
+                UserName = "superadmin",
+                Password = BCrypt.Net.BCrypt.HashPassword("admin@123"),
+                Role= nameof(Role.Admin),
                 Created = DateTime.Now,
                 IsDelete = false,
                 LastModified = DateTime.Now,
-                Password = "123456789",
-                UserName = "superadmin",
-                Role = (int)RoleEnum.SuperAdmin
             };
             accounts.Add(superAdmin);
 

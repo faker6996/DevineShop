@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using MARShop.Application.AccountHandler.Commands.CreateOrUpdate;
+using MARShop.Core.Entities;
 using System;
 
 namespace MARShop.Application.Mapper
@@ -16,5 +18,12 @@ namespace MARShop.Application.Mapper
             return mapper;
         });
         public static IMapper Mapper => Lazy.Value;
+    }
+    public class AccountMappingProfile : Profile
+    {
+        public AccountMappingProfile()
+        {
+            CreateMap<CreateOrUpdateClientCommand, Account>();
+        }
     }
 }

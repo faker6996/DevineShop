@@ -6,7 +6,6 @@ namespace MARShop.Infastructure.Persistence.Seed
     {
         public static void SeedInitial(this ModelBuilder modelBuilder)
         {
-            modelBuilder.SeedPermission();
             modelBuilder.SeedAccount();
         }
     }

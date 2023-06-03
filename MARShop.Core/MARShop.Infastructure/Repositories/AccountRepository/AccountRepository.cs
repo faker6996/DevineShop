@@ -1,7 +1,9 @@
-﻿using MARShop.Core.Entities;
+﻿using MARShop.Core.Common;
+using MARShop.Core.Entities;
+using MARShop.Infastructure.Common;
 using MARShop.Infastructure.Persistence;
 using MARShop.Infastructure.Repositories.Base;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,37 +11,32 @@ namespace MARShop.Infastructure.Repositories.AccountRepository
 {
     public class AccountRepository : Repository<Account>, IAccountRepository
     {
-        public AccountRepository(ApplicationDbContext context) : base(context)
+        public AccountRepository(ApplicationDbContext context) : base(context) { }
+        public async Task ChangePassword(int id, string oldPassword, string newPassword)
         {
-
+            var account = await DFistOrDefaultAsync(a => a.Id.Equals(id));
+            if (BCrypt.Net.BCrypt.Verify(oldPassword, account.Password))
+            {
+                account.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+            }
         }
+
         public async Task<Account> CheckAuth(string userName, string password)
         {
-            var account = await DFistOrDefaultAsync(acc => acc.UserName.Equals(userName) && acc.Password.Equals(password));
-            return account;
+            var account = await DFistOrDefaultAsync(a => a.UserName.Equals(userName));
+            return BCrypt.Net.BCrypt.Verify(password, account.Password) ? account : null;
         }
-        public async Task ChangePassword(int id, string oldPassword,string newPassword)
-        {
-            var account = await DFistOrDefaultAsync(acc => acc.Id == id  && acc.Password == oldPassword);
-            account.Password = newPassword;
-            await _context.SaveChangesAsync();
-        }
-        public async Task<IReadOnlyList<Account>> GetPagingAccountAsync(int skip, int pageSize, string keyWord)
-        {
 
-            var accounts = await DGetAllAsync();
-            return accounts.Where(a => IsMatchKeyWord(a, keyWord)).Skip(skip).Take(pageSize).ToList();
-        }
-        private bool IsMatchKeyWord(Account account, string keyWord = "")
+        public async Task<Respond<Account>> GetPagingAccountAsync(int skip, int pageSize, string keyWord)
         {
             if (keyWord == null) keyWord = "";
-
-            return account.UserName.ToLower().Contains(keyWord.ToLower());
-        }
-        public async Task<int> DGetTotalAccountWithKeyWordConditionAsync(string keyWord)
-        {
-            var medias = await DGetAllAsync();
-            return medias.Where(a => a.IsDelete == false).Where(a => IsMatchKeyWord(a, keyWord)).Count();
+            var accountsMatch = DGetAll().Where(a => a.UserName.Search(keyWord)
+                                                 || a.Email.Search(keyWord)
+                                                 || a.Name.Search(keyWord)
+                                                 || a.LinkWeb.Search(keyWord));
+            var total = accountsMatch.Count();
+            var accountsMatchPaging = await accountsMatch.Skip(skip).Take(pageSize).ToListAsync();
+            return Respond<Account>.New(accountsMatchPaging, total);
         }
     }
 }

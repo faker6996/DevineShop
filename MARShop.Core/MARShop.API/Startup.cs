@@ -1,8 +1,5 @@
-using MARShop.Application.Middleware;
-using MARShop.Infastructure;
 using MARShop.Infastructure.Persistence;
-using MARShop.Infastructure.UnitOfWork;
-using MediatRApi.Handlers;
+using MARShop.Infastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using MARShop.Application;
 
 namespace MARShop.API
 {
@@ -29,24 +27,27 @@ namespace MARShop.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+
             services.AddControllers();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
-                Configuration.GetConnectionString("MARShopDB"),
+                Configuration.GetConnectionString("FPTBlogDB"),
                 b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MARShop.API", Version = "v1" });
             });
+
             services.AddAutoMapper(typeof(Startup));
-            services.RegisterRepositories();
 
-            // Register the MediatR request handlers
-            services.RegisterRequestHandlers();
+            services.AddRepositoriesAndUnitOfWork();
 
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddRequestHandlers();
 
             services.AddHttpContextAccessor();
+
             services.AddAuthorization()
                     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
@@ -91,9 +92,6 @@ namespace MARShop.API
                 .AllowAnyHeader()
                 .SetIsOriginAllowed(origin => true) // allow any origin
                 .AllowCredentials()); // allow credentials
-
-            // global error handler
-            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             app.UseStaticFiles();
             app.UseAuthorization();
