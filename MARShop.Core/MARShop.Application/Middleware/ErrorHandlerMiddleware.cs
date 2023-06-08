@@ -45,9 +45,24 @@ namespace MARShop.Application.Middleware
                         break;
                 }
 
-                var result = JsonSerializer.Serialize(new { message = error?.Message });
+                var problemDetail = new ProblemDetail()
+                {
+                    Status = response.StatusCode,
+                    Type = "Server error",
+                    Title = "Server error",
+                    Detail = error?.Message ?? ""
+                };
+
+                var result = JsonSerializer.Serialize(problemDetail);
                 await response.WriteAsync(result);
             }
         }
+    }
+    class ProblemDetail
+    {
+        public int Status { get; set; }
+        public string Type { get; set; }
+        public string Title { get; set; }
+        public string Detail { get; set; }
     }
 }

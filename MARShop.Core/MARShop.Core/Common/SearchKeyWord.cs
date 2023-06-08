@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Text;
 
 namespace MARShop.Core.Common
@@ -63,6 +64,7 @@ namespace MARShop.Core.Common
 
         public static bool Search(this string text, string keyword)
         {
+            if (keyword.Trim() == String.Empty) return true;
             keyword = PreprocessText(keyword); // Tiền xử lý từ khóa
             string processedText = PreprocessText(text); // Tiền xử lý văn bản
 

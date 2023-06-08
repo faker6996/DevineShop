@@ -1,5 +1,5 @@
-﻿using MARShop.Application.AccountHandler.Commands.CreateOrUpdate;
-using MARShop.Application.Common;
+﻿using MARShop.Application.Common;
+using MARShop.Application.Handlers.AccountHandler.Commands.CreateOrUpdate;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MARShop.Application.AccountHandler.Commands.CreateOrUpdate;
+using MARShop.Application.Handlers.AccountHandler.Commands.CreateOrUpdate;
 using MARShop.Core.Entities;
 using System;
 

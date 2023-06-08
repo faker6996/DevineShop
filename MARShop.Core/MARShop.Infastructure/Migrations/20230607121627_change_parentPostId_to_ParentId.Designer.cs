@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MARShop.Infastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230603075636_init-data")]
-    partial class initdata
+    [Migration("20230607121627_change_parentPostId_to_ParentId")]
+    partial class change_parentPostId_to_ParentId
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,10 +23,8 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.Account", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
@@ -65,12 +63,12 @@ namespace MARShop.Infastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = 1,
-                            Created = new DateTime(2023, 6, 3, 14, 56, 35, 774, DateTimeKind.Local).AddTicks(9368),
+                            Id = "8e3fc3c1-b09f-4a26-8256-46cdf2ddd57e",
+                            Created = new DateTime(2023, 6, 7, 19, 16, 27, 68, DateTimeKind.Local).AddTicks(6568),
                             IsDelete = false,
                             IsSendEmailWhenHaveNewPost = false,
-                            LastModified = new DateTime(2023, 6, 3, 14, 56, 35, 775, DateTimeKind.Local).AddTicks(8459),
-                            Password = "$2a$11$zet5aYcJAAiPRFtGFkQOuev1DOwMdSpRnepnC63W.d54pH9CJs1O2",
+                            LastModified = new DateTime(2023, 6, 7, 19, 16, 27, 71, DateTimeKind.Local).AddTicks(8163),
+                            Password = "$2a$11$xfIiPpC/w96.6pHLswPd6Omy9ZH/fqeMakLV0ylg1rd8SOj1v4TbO",
                             Role = "Admin",
                             UserName = "superadmin"
                         });
@@ -78,21 +76,22 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.AccountBlogPost", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("integer");
+                    b.Property<string>("AccountId")
+                        .HasColumnType("text");
 
-                    b.Property<int>("BlogPostId")
-                        .HasColumnType("integer");
+                    b.Property<string>("BlogPostId")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("IsDelete")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsLiked")
                         .HasColumnType("boolean");
 
                     b.Property<bool>("IsSendEmailWhenHaveNewComment")
@@ -112,10 +111,11 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.BlogPost", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("text");
 
                     b.Property<string>("Content")
                         .HasColumnType("text");
@@ -132,10 +132,10 @@ namespace MARShop.Infastructure.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("Like")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Slug")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Summary")
                         .HasColumnType("text");
 
                     b.Property<string>("Title")
@@ -151,13 +151,11 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.BlogPostTag", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
-                    b.Property<int>("BlogPostId")
-                        .HasColumnType("integer");
+                    b.Property<string>("BlogPostId")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
@@ -168,8 +166,8 @@ namespace MARShop.Infastructure.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("TagId")
-                        .HasColumnType("integer");
+                    b.Property<string>("TagId")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -182,16 +180,14 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.Comment", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("integer");
+                    b.Property<string>("AccountId")
+                        .HasColumnType("text");
 
-                    b.Property<int>("BlogPostId")
-                        .HasColumnType("integer");
+                    b.Property<string>("BlogPostId")
+                        .HasColumnType("text");
 
                     b.Property<string>("Content")
                         .HasColumnType("text");
@@ -205,8 +201,8 @@ namespace MARShop.Infastructure.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<int>("ParentPostId")
-                        .HasColumnType("integer");
+                    b.Property<string>("ParentId")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -219,10 +215,8 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.Tag", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp without time zone");
@@ -245,15 +239,11 @@ namespace MARShop.Infastructure.Migrations
                 {
                     b.HasOne("MARShop.Core.Entities.Account", "Account")
                         .WithMany("AccountBlogPosts")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AccountId");
 
                     b.HasOne("MARShop.Core.Entities.BlogPost", "BlogPost")
                         .WithMany("AccountBlogPosts")
-                        .HasForeignKey("BlogPostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogPostId");
 
                     b.Navigation("Account");
 
@@ -264,15 +254,11 @@ namespace MARShop.Infastructure.Migrations
                 {
                     b.HasOne("MARShop.Core.Entities.BlogPost", "BlogPost")
                         .WithMany("BlogPostTags")
-                        .HasForeignKey("BlogPostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogPostId");
 
                     b.HasOne("MARShop.Core.Entities.Tag", "Tag")
                         .WithMany("BlogPostTags")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TagId");
 
                     b.Navigation("BlogPost");
 
@@ -283,15 +269,11 @@ namespace MARShop.Infastructure.Migrations
                 {
                     b.HasOne("MARShop.Core.Entities.Account", "Account")
                         .WithMany("Comments")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AccountId");
 
                     b.HasOne("MARShop.Core.Entities.BlogPost", "BlogPost")
                         .WithMany("Comments")
-                        .HasForeignKey("BlogPostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BlogPostId");
 
                     b.Navigation("Account");
 

@@ -1,13 +1,13 @@
 ﻿using MARShop.Application.Common;
-using MARShop.Application.Enum;
 using MARShop.Application.Mapper;
+using MARShop.Application.Middleware;
 using MARShop.Core.Entities;
 using MARShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.AccountHandler.Commands.CreateOrUpdate
+namespace MARShop.Application.Handlers.AccountHandler.Commands.CreateOrUpdate
 {
     public class CreateOrUpdateClientCommand : IRequest<Respond>
     {
@@ -16,7 +16,7 @@ namespace MARShop.Application.AccountHandler.Commands.CreateOrUpdate
         public string LinkWeb { get; set; }
         public bool IsSendEmailWhenHaveNewPost { get; set; }
         public bool IsSendEmailWhenHaveNewComment { get; set; }
-        public int BlogPostId { get; set; }
+        public string BlogPostId { get; set; }
     }
     public class CreateOrUpdateClientCommandHandler : IRequestHandler<CreateOrUpdateClientCommand, Respond>
     {
@@ -30,7 +30,7 @@ namespace MARShop.Application.AccountHandler.Commands.CreateOrUpdate
             // check blogPostExist
             if (!await IsBlogPostsExist(request.BlogPostId))
             {
-                return Respond.New(nameof(RespondStatus.Failed), @"Blog post don't exist");
+                throw new AppException("Blog post don't exist");
             }
 
             var existAccount = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Email == request.Email);
@@ -43,7 +43,7 @@ namespace MARShop.Application.AccountHandler.Commands.CreateOrUpdate
                 await UpdateClientAsync(request, existAccount);
             }
 
-            return Respond.New(nameof(RespondStatus.Success));
+            return Respond.Success();
         }
         private async Task CreateNewClientAsync(CreateOrUpdateClientCommand clientInfo)
         {
@@ -52,6 +52,7 @@ namespace MARShop.Application.AccountHandler.Commands.CreateOrUpdate
             {
                 AccountId = accountEntity.Id,
                 BlogPostId = clientInfo.BlogPostId,
+                IsLiked = false,
                 IsSendEmailWhenHaveNewComment = clientInfo.IsSendEmailWhenHaveNewComment
             });
             await _unitOfWork.SaveAsync();
@@ -75,6 +76,7 @@ namespace MARShop.Application.AccountHandler.Commands.CreateOrUpdate
                 {
                     AccountId = existAccount.Id,
                     BlogPostId = clientInfo.BlogPostId,
+                    IsLiked = false,
                     IsSendEmailWhenHaveNewComment = clientInfo.IsSendEmailWhenHaveNewComment
                 });
             }
@@ -86,7 +88,7 @@ namespace MARShop.Application.AccountHandler.Commands.CreateOrUpdate
 
             await _unitOfWork.SaveAsync();
         }
-        private async Task<bool> IsBlogPostsExist(int blogPostId)
+        private async Task<bool> IsBlogPostsExist(string blogPostId)
         {
             var blogPost = await _unitOfWork.BlogPosts.DFistOrDefaultAsync(a => a.Id == blogPostId);
             return blogPost != null;

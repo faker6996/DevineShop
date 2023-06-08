@@ -15,7 +15,7 @@ namespace MARShop.Infastructure.Persistence.Seed
 
             var superAdmin = new Account()
             {
-                Id = 1,
+                Id = Guid.NewGuid().ToString(),
                 UserName = "superadmin",
                 Password = BCrypt.Net.BCrypt.HashPassword("admin@123"),
                 Role= nameof(Role.Admin),

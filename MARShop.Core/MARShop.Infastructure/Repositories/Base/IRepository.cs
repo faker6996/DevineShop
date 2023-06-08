@@ -1,9 +1,9 @@
 ﻿using MARShop.Core.Common;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MARShop.Infastructure.Repositories.Base
@@ -15,7 +15,7 @@ namespace MARShop.Infastructure.Repositories.Base
 
         // Delete
         Task DDeleteAsync(T entity);
-        Task DeleteByIdAsync(int id);
+        Task DeleteByIdAsync(string id);
         Task DDeleteAsync(Expression<Func<T, bool>> predicate);
 
         // Update
@@ -26,9 +26,10 @@ namespace MARShop.Infastructure.Repositories.Base
         Task<T> DFistOrDefaultAsync();
         IQueryable<T> DGetAll();
         Task<IReadOnlyList<T>> DGetPagingAsync(int skip, int pageSize);
-        Task<IReadOnlyList<T>> DGetAsync(Func<T, bool> predicate);
-        Task<T> DGetByIdAsync(int id);
-
+        IQueryable<T> DGet(Func<T, bool> predicate);
+        Task<T> DGetByIdAsync(string id);
+        DbSet<T> DGetDbSet();
+        
         // Count
         Task<int> DCountAsync();
     }

@@ -25,7 +25,11 @@ namespace MARShop.Infastructure.Repositories.Base
         // Create
         public async Task<T> DAddAsync(T entity)
         {
-            entity.Created = System.DateTime.Now;
+            var now = System.DateTime.Now;
+
+            entity.Id = Guid.NewGuid().ToString();
+            entity.Created = now;
+            entity.LastModified = now;
             entity.IsDelete = false;
             await _db.AddAsync(entity);
             return entity;
@@ -37,7 +41,7 @@ namespace MARShop.Infastructure.Repositories.Base
             entity.IsDelete = true;
             _context.Entry(entity).State = EntityState.Modified;
         }
-        public async Task DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync(string id)
         {
             var entity = await _db.FindAsync(id);
             entity.IsDelete = true;
@@ -65,12 +69,12 @@ namespace MARShop.Infastructure.Repositories.Base
         // Get
         public async Task<T> DFistOrDefaultAsync(Func<T, bool> predicate)
         {
-            var item = _db.Where(a=>a.IsDelete==false).FirstOrDefault(predicate);
+            var item = _db.Where(a => a.IsDelete == false).FirstOrDefault(predicate);
             return item;
         }
         public async Task<T> DFistOrDefaultAsync()
         {
-           return await _db.Where(a => a.IsDelete == false).FirstOrDefaultAsync();
+            return await _db.Where(a => a.IsDelete == false).FirstOrDefaultAsync();
         }
         public IQueryable<T> DGetAll()
         {
@@ -80,11 +84,11 @@ namespace MARShop.Infastructure.Repositories.Base
         {
             return await _db.Where(a => a.IsDelete == false).Skip(skip).Take(pageSize).ToListAsync();
         }
-        public async Task<IReadOnlyList<T>> DGetAsync(Func<T, bool> predicate)
+        public IQueryable<T> DGet(Func<T, bool> predicate)
         {
-            return await _db.Where(a => a.IsDelete == false && predicate(a)).ToListAsync();
+            return  _db.Where(a => a.IsDelete == false).Where(predicate).AsQueryable();
         }
-        public async Task<T> DGetByIdAsync(int id)
+        public async Task<T> DGetByIdAsync(string id)
         {
             var entity = await _db.SingleOrDefaultAsync(t => t.Id.Equals(id));
             if (entity?.IsDelete == true)
@@ -93,11 +97,15 @@ namespace MARShop.Infastructure.Repositories.Base
             }
             return entity;
         }
-
+        public DbSet<T> DGetDbSet() 
+        {
+            return _db;
+        }
         // Count
         public async Task<int> DCountAsync()
         {
             return await _db.Where(a => a.IsDelete == false).CountAsync();
         }
+
     }
 }

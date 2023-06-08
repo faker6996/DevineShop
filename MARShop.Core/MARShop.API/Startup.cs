@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using MARShop.Application;
+using MARShop.Application.Middleware;
 
 namespace MARShop.API
 {
@@ -85,6 +86,7 @@ namespace MARShop.API
 
             app.UseRouting();
             app.UseAuthentication();
+            app.UseMiddleware<ErrorHandlerMiddleware>();
 
             // global cors policy
             app.UseCors(x => x

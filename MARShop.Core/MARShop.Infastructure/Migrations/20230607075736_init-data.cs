@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace MARShop.Infastructure.Migrations
 {
@@ -12,8 +11,7 @@ namespace MARShop.Infastructure.Migrations
                 name: "Accounts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<string>(type: "text", nullable: false),
                     UserName = table.Column<string>(type: "text", nullable: true),
                     Password = table.Column<string>(type: "text", nullable: true),
                     Role = table.Column<string>(type: "text", nullable: true),
@@ -34,14 +32,14 @@ namespace MARShop.Infastructure.Migrations
                 name: "BlogPosts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<string>(type: "text", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: true),
                     Image = table.Column<string>(type: "text", nullable: true),
                     Content = table.Column<string>(type: "text", nullable: true),
                     Slug = table.Column<string>(type: "text", nullable: true),
                     Views = table.Column<int>(type: "integer", nullable: false),
-                    Like = table.Column<int>(type: "integer", nullable: false),
+                    Category = table.Column<string>(type: "text", nullable: true),
+                    Summary = table.Column<string>(type: "text", nullable: true),
                     Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     LastModified = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     IsDelete = table.Column<bool>(type: "boolean", nullable: false)
@@ -55,8 +53,7 @@ namespace MARShop.Infastructure.Migrations
                 name: "Tags",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<string>(type: "text", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: true),
                     Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     LastModified = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
@@ -71,10 +68,10 @@ namespace MARShop.Infastructure.Migrations
                 name: "AccountBlogPosts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AccountId = table.Column<int>(type: "integer", nullable: false),
-                    BlogPostId = table.Column<int>(type: "integer", nullable: false),
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    AccountId = table.Column<string>(type: "text", nullable: true),
+                    BlogPostId = table.Column<string>(type: "text", nullable: true),
+                    IsLiked = table.Column<bool>(type: "boolean", nullable: false),
                     IsSendEmailWhenHaveNewComment = table.Column<bool>(type: "boolean", nullable: false),
                     Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     LastModified = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
@@ -88,24 +85,23 @@ namespace MARShop.Infastructure.Migrations
                         column: x => x.AccountId,
                         principalTable: "Accounts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_AccountBlogPosts_BlogPosts_BlogPostId",
                         column: x => x.BlogPostId,
                         principalTable: "BlogPosts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Comments",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AccountId = table.Column<int>(type: "integer", nullable: false),
-                    BlogPostId = table.Column<int>(type: "integer", nullable: false),
-                    ParentPostId = table.Column<int>(type: "integer", nullable: false),
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    AccountId = table.Column<string>(type: "text", nullable: true),
+                    BlogPostId = table.Column<string>(type: "text", nullable: true),
+                    ParentPostId = table.Column<string>(type: "text", nullable: true),
                     Content = table.Column<string>(type: "text", nullable: true),
                     Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     LastModified = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
@@ -119,23 +115,22 @@ namespace MARShop.Infastructure.Migrations
                         column: x => x.AccountId,
                         principalTable: "Accounts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Comments_BlogPosts_BlogPostId",
                         column: x => x.BlogPostId,
                         principalTable: "BlogPosts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "BlogPostTags",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    BlogPostId = table.Column<int>(type: "integer", nullable: false),
-                    TagId = table.Column<int>(type: "integer", nullable: false),
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    BlogPostId = table.Column<string>(type: "text", nullable: true),
+                    TagId = table.Column<string>(type: "text", nullable: true),
                     Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     LastModified = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     IsDelete = table.Column<bool>(type: "boolean", nullable: false)
@@ -148,19 +143,19 @@ namespace MARShop.Infastructure.Migrations
                         column: x => x.BlogPostId,
                         principalTable: "BlogPosts",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_BlogPostTags_Tags_TagId",
                         column: x => x.TagId,
                         principalTable: "Tags",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
                 table: "Accounts",
                 columns: new[] { "Id", "Created", "Email", "IsDelete", "IsSendEmailWhenHaveNewPost", "LastModified", "LinkWeb", "Name", "Password", "Role", "UserName" },
-                values: new object[] { 1, new DateTime(2023, 6, 3, 14, 56, 35, 774, DateTimeKind.Local).AddTicks(9368), null, false, false, new DateTime(2023, 6, 3, 14, 56, 35, 775, DateTimeKind.Local).AddTicks(8459), null, null, "$2a$11$zet5aYcJAAiPRFtGFkQOuev1DOwMdSpRnepnC63W.d54pH9CJs1O2", "Admin", "superadmin" });
+                values: new object[] { "cb66d301-7c39-4420-afb5-c0688fbe0009", new DateTime(2023, 6, 7, 14, 57, 35, 973, DateTimeKind.Local).AddTicks(777), null, false, false, new DateTime(2023, 6, 7, 14, 57, 35, 974, DateTimeKind.Local).AddTicks(282), null, null, "$2a$11$fmYjoLAxwx2SFfvEK09DGuZYTy/pxFUcNd/ge3l3O5.FIbxf3DvkO", "Admin", "superadmin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AccountBlogPosts_AccountId",

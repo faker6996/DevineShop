@@ -1,23 +1,17 @@
-﻿namespace MARShop.Application.Common
+﻿using MARShop.Application.Enum;
+
+namespace MARShop.Application.Common
 {
     public class Respond
     {
         public string Status { get; set; }
         public string Message { get; set; } = "";
 
-        public static Respond New(string status, string message)
+        public static Respond Success()
         {
             return new Respond()
             {
-                Status = status,
-                Message = message
-            };
-        }
-        public static Respond New(string status)
-        {
-            return new Respond()
-            {
-                Status = status,
+                Status = nameof(RespondStatus.Success),
             };
         }
     }
@@ -27,11 +21,19 @@
         public string Status { get; set; }
         public string Message { get; set; } = "";
         public T Result { get; set; }
-        public static Respond<T> New(string status, string message, T result)
+        public static Respond<T> Success(T result)
         {
             return new Respond<T>()
             {
-                Status = status,
+                Status = nameof(RespondStatus.Success),
+                Result = result
+            };
+        }
+        public static Respond<T> Success(string message, T result)
+        {
+            return new Respond<T>()
+            {
+                Status = nameof(RespondStatus.Success),
                 Message = message,
                 Result = result
             };
