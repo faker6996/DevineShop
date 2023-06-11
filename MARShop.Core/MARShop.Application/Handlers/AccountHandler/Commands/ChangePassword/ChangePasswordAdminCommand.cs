@@ -9,7 +9,7 @@ namespace MARShop.Application.Handlers.AccountHandler.Commands.ChangePassword
 {
     public class ChangePasswordAdminCommand:IRequest<Respond>
     {
-        public string UserName { get; set; }
+        public string Email { get; set; }
         public string OldPassword { get; set; }
         public string NewPassword { get; set; }
     }
@@ -25,10 +25,10 @@ namespace MARShop.Application.Handlers.AccountHandler.Commands.ChangePassword
 
         public async Task<Respond> Handle(ChangePasswordAdminCommand request, CancellationToken cancellationToken)
         {
-            var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.UserName == request.UserName);
+            var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Email == request.Email);
 
-            // check username exist
-            if (account == null) throw new AppException("Username not found");
+            // check Email exist
+            if (account == null) throw new AppException("Email not found");
 
             // check old password
             if (!BCrypt.Net.BCrypt.Verify(request.OldPassword, account.Password)) throw new AppException("Wrong old password");

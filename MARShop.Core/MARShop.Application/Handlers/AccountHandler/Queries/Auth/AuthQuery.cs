@@ -16,13 +16,13 @@ using BCrypt.Net;
 
 namespace MARShop.Application.Handlers.AccountHandler.Queries.Auth
 {
-    public class AuthAdminQuery : IRequest<Respond<string>>
+    public class AuthQuery : IRequest<Respond<string>>
     {
-        public string UserName { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
     }
 
-    public class AuthQueryHandler : IRequestHandler<AuthAdminQuery, Respond<string>>
+    public class AuthQueryHandler : IRequestHandler<AuthQuery, Respond<string>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConfiguration _configuration;
@@ -33,11 +33,11 @@ namespace MARShop.Application.Handlers.AccountHandler.Queries.Auth
             _configuration = configuration;
         }
 
-        public async Task<Respond<string>> Handle(AuthAdminQuery request, CancellationToken cancellationToken)
+        public async Task<Respond<string>> Handle(AuthQuery request, CancellationToken cancellationToken)
         {
-            var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.UserName == request.UserName);
+            var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Email == request.Email);
 
-            if (account == null) throw new AppException("Username not found");
+            if (account == null) throw new AppException("Email not found");
             if (!BCrypt.Net.BCrypt.Verify(request.Password, account.Password)) throw new AppException("Wrong password");
 
             var token = CreateToken(account);

@@ -10,7 +10,7 @@ namespace MARShop.Application.Handlers.AccountHandler.Commands.ChangePassword
 {
     public class ResetPasswordCommand : IRequest<Respond>
     {
-        public string UserName { get; set; }
+        public string Email { get; set; }
     }
 
     public class ResetPasswordCommandHandler : IRequestHandler<ResetPasswordCommand, Respond>
@@ -26,7 +26,7 @@ namespace MARShop.Application.Handlers.AccountHandler.Commands.ChangePassword
 
         public async Task<Respond> Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
         {
-            var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.UserName == request.UserName);
+            var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Email == request.Email);
 
             var randomPassword = Guid.NewGuid().ToString();
 
