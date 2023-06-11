@@ -18,9 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\AccountHandler\Commands\Create\" />
     <Folder Include="Handlers\AccountHandler\Commands\Delete\" />
-    <Folder Include="Handlers\AccountHandler\Commands\ChangePassword\" />
     <Folder Include="Handlers\AccountHandler\Commands\Update\" />
     <Folder Include="Handlers\AccountHandler\Queries\Get\" />
     <Folder Include="Handlers\AccountHandler\Queries\Paging\" />

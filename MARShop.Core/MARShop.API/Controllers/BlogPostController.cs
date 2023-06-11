@@ -36,11 +36,18 @@ namespace MARShop.API.Controllers
             return Ok(await _mediator.Send(deleteBlogPostCommand));
         }
 
-        [HttpGet, Route("{id}")]
-        public async Task<ActionResult> Get(string id)
+        [HttpGet]
+        public async Task<ActionResult> Get([FromQuery] string id)
         {
             var getBlogPostQuery = new GetBlogPostQuery() { Id = id };
             return Ok(await _mediator.Send(getBlogPostQuery));
+        }
+
+        [HttpGet, Route("{slug}")]
+        public async Task<ActionResult> GetBySlug(string slug)
+        {
+            var getBlogPostBySlugQuery = new GetBlogPostBySlugQuery() { Slug = slug };
+            return Ok(await _mediator.Send(getBlogPostBySlugQuery));
         }
 
         [HttpPost("Paging")]

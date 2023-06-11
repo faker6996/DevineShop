@@ -1,21 +1,21 @@
 ﻿using MARShop.Application.Common;
+using MediatR;
+using System.Collections.Generic;
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+using MARShop.Infastructure.UnitOfWork;
 using MARShop.Application.Mapper;
 using MARShop.Application.Middleware;
-using MARShop.Infastructure.UnitOfWork;
-using MediatR;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Get
 {
-    public class GetBlogPostQuery : IRequest<Respond<BlogPostRespond>>
+    public class GetBlogPostBySlugQuery : IRequest<Respond<BlogPostBySlugRespond>>
     {
-        public string Id { get; set; }
+        public string Slug { get; set; }
     }
-    public class BlogPostRespond
+    public class BlogPostBySlugRespond
     {
         public string Id { get; set; }
         public DateTime Created { get; set; }
@@ -27,25 +27,24 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Get
         public int Likes { get; set; }
         public string Summary { get; set; }
         public string Category { get; set; }
-        public IList<TagRespond> Tags { get; set; }
+        public IList<TagBySlugRespond> Tags { get; set; }
     }
-    public class TagRespond
+    public class TagBySlugRespond
     {
         public string Id { get; set; }
         public string Title { get; set; }
     }
 
-    public class GetBlogPostQueryHandle : IRequestHandler<GetBlogPostQuery, Respond<BlogPostRespond>>
+    public class GetBlogPostBySlugQueryHandle : IRequestHandler<GetBlogPostBySlugQuery, Respond<BlogPostBySlugRespond>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        public GetBlogPostQueryHandle(IUnitOfWork unitOfWork)
+        public GetBlogPostBySlugQueryHandle(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-
-        public async Task<Respond<BlogPostRespond>> Handle(GetBlogPostQuery request, CancellationToken cancellationToken)
+        public async Task<Respond<BlogPostBySlugRespond>> Handle(GetBlogPostBySlugQuery request, CancellationToken cancellationToken)
         {
-            var blogPost = await _unitOfWork.BlogPosts.DFistOrDefaultAsync(a => a.Id == request.Id);
+            var blogPost = await _unitOfWork.BlogPosts.DFistOrDefaultAsync(a => a.Slug == request.Slug);
 
             // check blog post exist
             if (blogPost == null) throw new AppException("Blog post dont exist");
@@ -56,23 +55,22 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Get
             await _unitOfWork.SaveAsync();
 
             // map to respond
-            var blogPostRespond = BlogPostMapper.Mapper.Map<BlogPostRespond>(blogPost);
-            blogPostRespond.Likes = GetLikes(request.Id);
-            blogPostRespond.Tags = await GetTagResponds(request.Id);
+            var blogPostRespond = BlogPostMapper.Mapper.Map<BlogPostBySlugRespond>(blogPost);
+            blogPostRespond.Likes = GetLikes(blogPost.Id);
+            blogPostRespond.Tags = await GetTagResponds(blogPost.Id);
 
-            return Respond<BlogPostRespond>.Success(blogPostRespond);
+            return Respond<BlogPostBySlugRespond>.Success(blogPostRespond);
         }
-
-        private async Task<IList<TagRespond>> GetTagResponds(string blogPostId)
+        private async Task<IList<TagBySlugRespond>> GetTagResponds(string blogPostId)
         {
             var blogPostTags = _unitOfWork.BlogPostTags.DGet(a => a.BlogPostId == blogPostId).ToList();
 
-            var tags = new List<TagRespond>();
+            var tags = new List<TagBySlugRespond>();
             foreach (var blogPostTag in blogPostTags)
             {
                 var tagss = _unitOfWork.Tags.DGetDbSet();
                 var tag = await _unitOfWork.Tags.DFistOrDefaultAsync(a => a.Id == blogPostTag.TagId);
-                tags.Add(new TagRespond()
+                tags.Add(new TagBySlugRespond()
                 {
                     Id = tag.Id,
                     Title = tag.Title,
@@ -80,7 +78,6 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Get
             }
             return tags;
         }
-
         private int GetLikes(string blogPostId)
         {
             return _unitOfWork.AccountBlogPosts.DGet(a => a.BlogPostId == blogPostId && a.IsLiked == true).Count();

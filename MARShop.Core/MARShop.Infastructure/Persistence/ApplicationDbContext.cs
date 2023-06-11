@@ -23,5 +23,6 @@ namespace MARShop.Infastructure.Persistence
         public DbSet<AccountBlogPost> AccountBlogPosts => Set<AccountBlogPost>();
         public DbSet<Account> Accounts => Set<Account>();
         public DbSet<Comment> Comments => Set<Comment>();
+        public DbSet<EmailConfig> EmailConfig => Set<EmailConfig>();
     }
 }

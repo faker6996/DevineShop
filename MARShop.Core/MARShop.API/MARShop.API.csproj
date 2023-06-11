@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\CoverImage\" />
     <Folder Include="wwwroot\upload\imageId\" />
     <Folder Include="wwwroot\upload\media\" />
   </ItemGroup>

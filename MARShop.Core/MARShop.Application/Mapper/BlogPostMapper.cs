@@ -26,6 +26,7 @@ namespace MARShop.Application.Mapper
         {
             CreateMap<CreateBlogPostCommand, BlogPost>();
             CreateMap<BlogPost, BlogPostRespond>();
+            CreateMap<BlogPost, BlogPostBySlugRespond>();
         }
     }
 }

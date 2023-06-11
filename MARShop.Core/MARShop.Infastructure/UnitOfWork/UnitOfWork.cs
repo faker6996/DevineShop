@@ -4,6 +4,7 @@ using MARShop.Infastructure.Repositories.AccountRepository;
 using MARShop.Infastructure.Repositories.BlogPostRepository;
 using MARShop.Infastructure.Repositories.BlogPostTagRepository;
 using MARShop.Infastructure.Repositories.CommentRepository;
+using MARShop.Infastructure.Repositories.EmailConfigRepository;
 using MARShop.Infastructure.Repositories.TagRepository;
 using System;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace MARShop.Infastructure.UnitOfWork
         public IAccountBlogPostRepository _accountBlogPosts;
         public IAccountRepository _accounts;
         public ICommentRepository _comments;
+        public IEmailConfigRepository _emailConfigs;
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
@@ -29,6 +31,7 @@ namespace MARShop.Infastructure.UnitOfWork
         public IAccountBlogPostRepository AccountBlogPosts => _accountBlogPosts ?? new AccountBlogPostRepository(_context);
         public IAccountRepository Accounts => _accounts ?? new AccountRepository(_context);
         public ICommentRepository Comments => _comments ?? new CommentRepository(_context);
+        public IEmailConfigRepository EmailConfigs => _emailConfigs ?? new EmailConfigRepository(_context);
 
         public void Dispose()
         {

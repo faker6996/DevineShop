@@ -9,9 +9,14 @@ using System.Threading.Tasks;
 
 namespace MARShop.Application.Handlers.CommentHandler.Queries.Get
 {
-    public class GetCommentByBlogPostIdQuery : IRequest<Respond<IList<CommentRespond>>>
+    public class GetCommentByBlogPostIdQuery : IRequest<Respond<CommentsRespond>>
     {
         public string Id { get; set; }
+    }
+    public class CommentsRespond
+    {
+        public IList<CommentRespond> Comments { get; set; }
+        public int Total { get; set; }
     }
     public class CommentRespond : SubCommentRespond
     {
@@ -28,7 +33,7 @@ namespace MARShop.Application.Handlers.CommentHandler.Queries.Get
         public string CommentContent { get; set; }
     }
 
-    public class GetCommentByBlogPostIdQueryHandler : IRequestHandler<GetCommentByBlogPostIdQuery, Respond<IList<CommentRespond>>>
+    public class GetCommentByBlogPostIdQueryHandler : IRequestHandler<GetCommentByBlogPostIdQuery, Respond<CommentsRespond>>
     {
         private readonly IUnitOfWork _unitOfWork;
         public GetCommentByBlogPostIdQueryHandler(IUnitOfWork unitOfWork)
@@ -36,7 +41,7 @@ namespace MARShop.Application.Handlers.CommentHandler.Queries.Get
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Respond<IList<CommentRespond>>> Handle(GetCommentByBlogPostIdQuery request, CancellationToken cancellationToken)
+        public async Task<Respond<CommentsRespond>> Handle(GetCommentByBlogPostIdQuery request, CancellationToken cancellationToken)
         {
             // check blog post exist
             var blogPost = await _unitOfWork.BlogPosts.DFistOrDefaultAsync(a => a.Id == request.Id);
@@ -64,9 +69,9 @@ namespace MARShop.Application.Handlers.CommentHandler.Queries.Get
 
             var commentHaveParents = comments.Where(a => a.ParentId != null);
 
-            foreach(var commentHaveParent in commentHaveParents)
+            foreach (var commentHaveParent in commentHaveParents)
             {
-                var commentRespond = commentResponds.FirstOrDefault(a=>a.CommentId == commentHaveParent.ParentId);
+                var commentRespond = commentResponds.FirstOrDefault(a => a.CommentId == commentHaveParent.ParentId);
                 var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Id == commentHaveParent.AccountId);
 
                 commentRespond.SubComments.Add(new SubCommentRespond()
@@ -80,8 +85,14 @@ namespace MARShop.Application.Handlers.CommentHandler.Queries.Get
                     CommentContent = commentHaveParent.Content,
                 });
             }
-            
-            return Respond<IList<CommentRespond>>.Success(commentResponds);
+
+            var commentsRespond = new CommentsRespond()
+            {
+                Comments = commentResponds,
+                Total = comments.Count()
+            };
+
+            return Respond<CommentsRespond>.Success(commentsRespond);
         }
     }
 }
