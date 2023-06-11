@@ -1,5 +1,6 @@
 ﻿using MARShop.Application.Common;
 using MARShop.Application.Handlers.EmailHandler.Queries;
+using MARShop.Application.Middleware;
 using MARShop.Infastructure.UnitOfWork;
 using MediatR;
 using System;
@@ -27,6 +28,8 @@ namespace MARShop.Application.Handlers.AccountHandler.Commands.ChangePassword
         public async Task<Respond> Handle(ResetPasswordCommand request, CancellationToken cancellationToken)
         {
             var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Email == request.Email);
+
+            if (account == null) throw new AppException("Email không có trong hệ thống");
 
             var randomPassword = Guid.NewGuid().ToString();
 
