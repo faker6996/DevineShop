@@ -1,12 +1,15 @@
 ﻿using MARShop.Application.Common;
+using MARShop.Application.Handlers.AccountBlogPostHandler.Queries.Get;
 using MARShop.Application.Handlers.BlogPostHandler.Commands.Create;
 using MARShop.Application.Handlers.BlogPostHandler.Commands.Delete;
 using MARShop.Application.Handlers.BlogPostHandler.Commands.Update;
 using MARShop.Application.Handlers.BlogPostHandler.Queries.Get;
 using MARShop.Application.Handlers.BlogPostHandler.Queries.Paging;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace MARShop.API.Controllers
 {
@@ -21,11 +24,15 @@ namespace MARShop.API.Controllers
 
         [HttpPost]
         public async Task<ActionResult<Respond>> Create([FromBody] CreateBlogPostCommand command) => Ok(await _mediator.Send(command));
+        [HttpPost("Paging")]
+        public async Task<ActionResult> Paging([FromBody] PagingBlogPostQuery query) => Ok(await _mediator.Send(query));
 
         [HttpPatch]
         public async Task<ActionResult<Respond>> Update([FromBody] UpdateBlogPostCommand command) => Ok(await _mediator.Send(command));
         [HttpPatch("Increase-View")]
         public async Task<ActionResult<Respond>> IncreateView([FromBody] IncreaseViewCommand command) => Ok(await _mediator.Send(command));
+
+        [Authorize]
         [HttpPatch("Update-Like")]
         public async Task<ActionResult<Respond>> UpdateLike([FromBody] UpdateLikeBlogPostCommand command) => Ok(await _mediator.Send(command));
 
@@ -49,8 +56,11 @@ namespace MARShop.API.Controllers
             var getBlogPostBySlugQuery = new GetBlogPostBySlugQuery() { Slug = slug };
             return Ok(await _mediator.Send(getBlogPostBySlugQuery));
         }
-
-        [HttpPost("Paging")]
-        public async Task<ActionResult> Paging([FromBody] PagingBlogPostQuery query) => Ok(await _mediator.Send(query));
+        [HttpGet("Account-Blog-Post")]
+        public async Task<ActionResult> GetAccountBlogPost(string accountId, string blogpostId)
+        {
+            var query = new GetAccountBlogPostQuery() { AccountId = accountId, BlogPostId = blogpostId };
+            return Ok(await _mediator.Send(query));
+        }
     }
 }

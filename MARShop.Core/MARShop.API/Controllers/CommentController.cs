@@ -2,6 +2,7 @@
 using MARShop.Application.Handlers.CommentHandler.Commands.Create;
 using MARShop.Application.Handlers.CommentHandler.Queries.Get;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ namespace MARShop.API.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<Respond>> Create([FromBody] CreateCommentCommand command) => Ok(await _mediator.Send(command));
 
         [HttpGet]

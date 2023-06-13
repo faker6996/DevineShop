@@ -1,4 +1,5 @@
 ﻿using MARShop.Application.Common;
+using MARShop.Application.Mapper;
 using MARShop.Application.Middleware;
 using MARShop.Core.Entities;
 using MARShop.Infastructure.UnitOfWork;
@@ -29,23 +30,37 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
             // check blogPost exist
             if (!await IsBlogPostsExist(request.BlogPostId))
             {
-                throw new AppException("Blog post don't exist");
+                throw new AppException("Bài viết không tồn tại");
             }
 
             // check account exist
             if (!await IsAccountExist(request.AccountId))
             {
-                throw new AppException("Account don't exist");
+                throw new AppException("Tài khoản không tồn tại");
             }
 
-            // update account blog post
             var accountBlogPost = await _unitOfWork.AccountBlogPosts.DFistOrDefaultAsync(a => a.AccountId == request.AccountId && a.BlogPostId == request.BlogPostId);
-            accountBlogPost.IsLiked = request.IsLike;
-            await _unitOfWork.AccountBlogPosts.DUpdateAsync(accountBlogPost);
+
+            // create account blog post
+            if (accountBlogPost == null)
+            {
+                await CreateAccountBlogPost(request);
+            }
+            // update account blog post
+            else
+            {
+                accountBlogPost.IsLiked = request.IsLike;
+                await _unitOfWork.AccountBlogPosts.DUpdateAsync(accountBlogPost);
+            }
 
             await _unitOfWork.SaveAsync();
 
             return Respond.Success();
+        }
+        private async Task CreateAccountBlogPost(UpdateLikeBlogPostCommand request)
+        {
+            var accountBlogPost = AccountBlogPostMapper.Mapper.Map<AccountBlogPost>(request);
+            await _unitOfWork.AccountBlogPosts.DAddAsync(accountBlogPost);
         }
         private async Task<bool> IsBlogPostsExist(string blogPostId)
         {

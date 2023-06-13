@@ -2,6 +2,6 @@
 {
     public enum BlogCategoryType
     {
-        GrowingInThePRWorld, SeeThinkShare, MyConner 
+        GrowingInThePRWorld, SeeThinkShare, MyCorner 
     }
 }
