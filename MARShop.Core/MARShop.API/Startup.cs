@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using MARShop.Application;
 using MARShop.Application.Middleware;
+using MARShop.Application.Hubs;
 
 namespace MARShop.API
 {
@@ -48,6 +49,8 @@ namespace MARShop.API
             services.AddRequestHandlers();
 
             services.AddHttpContextAccessor();
+
+            services.AddSignalR();
 
             services.AddAuthorization()
                     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -100,7 +103,8 @@ namespace MARShop.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers(); 
+                endpoints.MapHub<NotificationHub>("/notificationHub");
             });
         }
     }

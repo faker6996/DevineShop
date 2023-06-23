@@ -35,7 +35,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
             var blogPost = await _unitOfWork.BlogPosts.DFistOrDefaultAsync(a => a.Id == request.Id);
             if (blogPost == null)
             {
-                throw new AppException("Blog post dont exist");
+                throw new AppException("Bài viết không tồn tại");
             }
 
             // Update blog post
@@ -70,7 +70,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
             foreach (var tagId in tagIds)
             {
                 var tag =await _unitOfWork.Tags.DFistOrDefaultAsync(a => a.Id == tagId);
-                if (tag == null) throw new AppException($"Tag {tagId} dont exist");
+                if (tag == null) throw new AppException($"Nhãn dán không tồn tại");
                 var blogPostTag = new BlogPostTag()
                 {
                     BlogPostId = blogPostId,

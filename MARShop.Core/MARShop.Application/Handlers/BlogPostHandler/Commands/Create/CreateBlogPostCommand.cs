@@ -1,11 +1,14 @@
 ﻿using MARShop.Application.Common;
+using MARShop.Application.Handlers.EmailHandler.Queries;
 using MARShop.Application.Mapper;
 using MARShop.Application.Middleware;
 using MARShop.Core.Common;
 using MARShop.Core.Entities;
 using MARShop.Infastructure.UnitOfWork;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -24,9 +27,16 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Create
     public class CreateBlogPostCommandHandler : IRequestHandler<CreateBlogPostCommand, Respond>
     {
         private readonly IUnitOfWork _unitOfWork;
-        public CreateBlogPostCommandHandler(IUnitOfWork unitOfWork)
+        private readonly IMediator _mediator;
+        private readonly IConfiguration _configuration;
+
+
+        public CreateBlogPostCommandHandler(IUnitOfWork unitOfWork, IMediator mediator, IConfiguration configuration)
         {
             _unitOfWork = unitOfWork;
+            _mediator = mediator;
+            _configuration = configuration;
+
         }
 
         public async Task<Respond> Handle(CreateBlogPostCommand request, CancellationToken cancellationToken)
@@ -34,7 +44,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Create
             // check title of blog code exist
             if (await IsTitleOfBlogPostExist(request.Title))
             {
-                throw new AppException("Duplicate name of blog post");
+                throw new AppException("Tên bài viết đã tồn tại");
             }
 
             // create blog post
@@ -48,6 +58,9 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Create
 
             await _unitOfWork.SaveAsync();
 
+            var emailSubcribers = _unitOfWork.Accounts.DGet(a => a.IsSendEmailWhenHaveNewPost == true).Select(a => a.Email).ToList();
+            await SendEmailToSubcriberAsync(emailSubcribers,blogPost);
+
             return Respond.Success();
         }
 
@@ -59,7 +72,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Create
                 var tag = await _unitOfWork.Tags.DFistOrDefaultAsync(a => a.Id == tagId);
                 if (tag == null)
                 {
-                    throw new AppException($"Tag {tagId} dont exist");
+                    throw new AppException($"Nhãn dán không tồn tại");
                 }
                 var blogPostTag = new BlogPostTag()
                 {
@@ -75,6 +88,22 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Create
         {
             var blogPost = await _unitOfWork.BlogPosts.DFistOrDefaultAsync(a => a.Title == title);
             return blogPost != null;
+        }
+
+        private async Task SendEmailToSubcriberAsync(List<string> emails,BlogPost blogPost)
+        {
+            foreach (var email in emails)
+            {
+
+                var emailQuery = new SendEmailQuery()
+                {
+                    ToMail = email,
+                    Subject = "ĐÃ CÓ BÀI VIẾT MỚI",
+                    Body = $"<body>\r\n<p>Xin chào,</p>\r\n<p>Tác giả đã có bài viêt mới, bạn có thể đón đọc tại đường dẫn: <a href=\"{_configuration["FrontEndEndPoint"]}{blogPost.Category}/{blogPost.Slug}\">{blogPost.Title}</a>.</p>\r\n</body>"
+                };
+
+                await _mediator.Send(emailQuery);
+            }
         }
     }
 }

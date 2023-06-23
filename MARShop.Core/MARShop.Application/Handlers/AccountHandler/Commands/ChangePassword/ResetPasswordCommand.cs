@@ -1,6 +1,7 @@
 ﻿using MARShop.Application.Common;
 using MARShop.Application.Handlers.EmailHandler.Queries;
 using MARShop.Application.Middleware;
+using MARShop.Core.Common;
 using MARShop.Infastructure.UnitOfWork;
 using MediatR;
 using System;
@@ -31,7 +32,7 @@ namespace MARShop.Application.Handlers.AccountHandler.Commands.ChangePassword
 
             if (account == null) throw new AppException("Email không có trong hệ thống");
 
-            var randomPassword = Guid.NewGuid().ToString();
+            var randomPassword = GeneratePass.GenerateRandomPassword(5);
 
             account.Password = BCrypt.Net.BCrypt.HashPassword(randomPassword);
             await _unitOfWork.Accounts.DUpdateAsync(account);

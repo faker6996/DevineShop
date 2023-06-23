@@ -7,6 +7,8 @@ namespace MARShop.Infastructure.Persistence.Seed
         public static void SeedInitial(this ModelBuilder modelBuilder)
         {
             modelBuilder.SeedAccount();
+            modelBuilder.SeedContact();
+            modelBuilder.SeedEmailConfig();
         }
     }
 }

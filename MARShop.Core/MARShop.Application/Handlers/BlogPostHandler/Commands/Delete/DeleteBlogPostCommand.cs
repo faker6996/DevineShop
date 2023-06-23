@@ -27,7 +27,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Delete
             // check blog post exist
             if (blogPost == null)
             {
-                throw new AppException("Blog post dont exist");
+                throw new AppException("Bài viết không tồn tại");
             }
 
             // remove blog post

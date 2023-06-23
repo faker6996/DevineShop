@@ -26,7 +26,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
             var blogPost = await _unitOfWork.BlogPosts.DFistOrDefaultAsync(a => a.Id == request.BlogPostId);
             if (blogPost == null)
             {
-                throw new AppException("Blog post dont exist");
+                throw new AppException("Bài viết không tồn tại");
             }
 
             // increate view

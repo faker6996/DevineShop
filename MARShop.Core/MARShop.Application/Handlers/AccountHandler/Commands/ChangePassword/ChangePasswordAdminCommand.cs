@@ -28,10 +28,10 @@ namespace MARShop.Application.Handlers.AccountHandler.Commands.ChangePassword
             var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Email == request.Email);
 
             // check Email exist
-            if (account == null) throw new AppException("Email not found");
+            if (account == null) throw new AppException("Email không tồn tại trong hệ thống");
 
             // check old password
-            if (!BCrypt.Net.BCrypt.Verify(request.OldPassword, account.Password)) throw new AppException("Wrong old password");
+            if (!BCrypt.Net.BCrypt.Verify(request.OldPassword, account.Password)) throw new AppException("Mật khẩu cũ không đúng");
 
             account.Password = BCrypt.Net.BCrypt.HashPassword(request.NewPassword);
             await _unitOfWork.Accounts.DUpdateAsync(account);

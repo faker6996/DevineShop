@@ -1,10 +1,13 @@
 ﻿using MARShop.Application.Common;
+using MARShop.Application.Handlers.NotifyHandler.Commands.Create;
 using MARShop.Application.Mapper;
 using MARShop.Application.Middleware;
 using MARShop.Core.Entities;
+using MARShop.Core.Enum;
 using MARShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.ComponentModel;
+using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -20,9 +23,12 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
     public class UpdateLikeBlogPostCommandHandler : IRequestHandler<UpdateLikeBlogPostCommand, Respond>
     {
         private readonly IUnitOfWork _unitOfWork;
-        public UpdateLikeBlogPostCommandHandler(IUnitOfWork unitOfWork)
+        private readonly IMediator _mediator;
+
+        public UpdateLikeBlogPostCommandHandler(IUnitOfWork unitOfWork, IMediator mediator)
         {
             _unitOfWork = unitOfWork;
+            _mediator = mediator;
         }
 
         public async Task<Respond> Handle(UpdateLikeBlogPostCommand request, CancellationToken cancellationToken)
@@ -54,6 +60,22 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
             }
 
             await _unitOfWork.SaveAsync();
+
+            if (request.IsLike)
+            {
+                var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Id == request.AccountId);
+                var blogPost = await _unitOfWork.BlogPosts.DFistOrDefaultAsync(a => a.Id == request.BlogPostId);
+                var notifyCommand = new CreateNotifyCommand()
+                {
+                    Type = nameof(NotifyType.BlogPost),
+                    Content = $"Bạn {account.Name} có Email là {account.Email} đã thích bài viết {blogPost.Title}",
+                    Link = $"{blogPost.Category}/{blogPost.Slug}",
+                    Title = "Thông báo yêu thích",
+                    IsRead = false
+                };
+
+                await _mediator.Send(notifyCommand);
+            }
 
             return Respond.Success();
         }

@@ -25,7 +25,7 @@ namespace MARShop.Application.Handlers.TagHandler.Commands.Delete
             var tag = await _unitOfWork.Tags.DFistOrDefaultAsync(a => a.Id == request.TagId);
             if (tag == null)
             {
-                throw new AppException("Tag dont exist");
+                throw new AppException("Nhãn không tồn tại");
             }
 
             // Delete Tag

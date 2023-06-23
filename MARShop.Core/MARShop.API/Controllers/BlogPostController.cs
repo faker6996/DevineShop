@@ -26,6 +26,8 @@ namespace MARShop.API.Controllers
         public async Task<ActionResult<Respond>> Create([FromBody] CreateBlogPostCommand command) => Ok(await _mediator.Send(command));
         [HttpPost("Paging")]
         public async Task<ActionResult> Paging([FromBody] PagingBlogPostQuery query) => Ok(await _mediator.Send(query));
+         [HttpPost("Relevant")]
+        public async Task<ActionResult> PagingRelavant([FromBody] PagingBlogPostRelevantQuery query) => Ok(await _mediator.Send(query));
 
         [HttpPatch]
         public async Task<ActionResult<Respond>> Update([FromBody] UpdateBlogPostCommand command) => Ok(await _mediator.Send(command));

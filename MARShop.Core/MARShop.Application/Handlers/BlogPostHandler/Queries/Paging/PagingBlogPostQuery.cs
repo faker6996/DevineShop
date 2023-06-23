@@ -1,8 +1,10 @@
 ﻿using MARShop.Application.Common;
+using MARShop.Application.Enum;
 using MARShop.Core.Common;
 using MARShop.Core.Entities;
 using MARShop.Infastructure.UnitOfWork;
 using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -39,7 +41,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Paging
         public int Likes { get; set; }
         public string Category { get; set; }
         public string Summary { get; set; }
-
+        public DateTime Created { get; set; }
         public IList<TagRespond> Tags { get; set; }
     }
     public class TagRespond
@@ -48,10 +50,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Paging
         public string Title { get; set; }
     }
 
-    enum ShortTitle
-    {
-        Created, LastModified, View
-    }
+ 
     public class PagingBlogPostQueryHandler : IRequestHandler<PagingBlogPostQuery, Respond<Paging<BlogPostRespond>>>
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -84,6 +83,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Paging
                     Likes = likes,
                     Category = blogPost.Category,
                     Summary = blogPost.Summary,
+                    Created = blogPost.Created,
                     Tags = tags
                 };
 

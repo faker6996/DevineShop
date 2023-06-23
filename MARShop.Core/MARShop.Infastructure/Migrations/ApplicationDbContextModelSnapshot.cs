@@ -61,12 +61,12 @@ namespace MARShop.Infastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5c628447-61b7-47f2-ab28-e5691e2ca15d",
-                            Created = new DateTime(2023, 6, 10, 15, 32, 38, 163, DateTimeKind.Local).AddTicks(3206),
+                            Id = "46370d24-50fa-4902-b001-97e13de8ff7b",
+                            Created = new DateTime(2023, 6, 22, 9, 44, 25, 344, DateTimeKind.Local).AddTicks(5074),
                             IsDelete = false,
                             IsSendEmailWhenHaveNewPost = false,
-                            LastModified = new DateTime(2023, 6, 10, 15, 32, 38, 164, DateTimeKind.Local).AddTicks(2430),
-                            Password = "$2a$11$HFiM4Brhve8hcBtZE/Oacu6FMtNNyOW5hEpAevO9HOFu2AByJwtV2",
+                            LastModified = new DateTime(2023, 6, 22, 9, 44, 25, 346, DateTimeKind.Local).AddTicks(3281),
+                            Password = "$2a$11$96ow5KjQKR8yhdXBKWBovuwJu/6QlcubevthZKpxv0XWZQ7AGjuuG",
                             Role = "Admin",
                             UserName = "superadmin"
                         });
@@ -211,6 +211,42 @@ namespace MARShop.Infastructure.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("MARShop.Core.Entities.Contact", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Facebook")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Linkedin")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "49f6b60d-7734-470a-965b-e0d87f710fd5",
+                            Created = new DateTime(2023, 6, 22, 9, 44, 25, 658, DateTimeKind.Local).AddTicks(2845),
+                            Facebook = "",
+                            IsDelete = false,
+                            LastModified = new DateTime(2023, 6, 22, 9, 44, 25, 658, DateTimeKind.Local).AddTicks(2879),
+                            Linkedin = ""
+                        });
+                });
+
             modelBuilder.Entity("MARShop.Core.Entities.EmailConfig", b =>
                 {
                     b.Property<string>("Id")
@@ -233,7 +269,41 @@ namespace MARShop.Infastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EmailConfig");
+                    b.ToTable("EmailConfigs");
+                });
+
+            modelBuilder.Entity("MARShop.Core.Entities.Notify", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Notifies");
                 });
 
             modelBuilder.Entity("MARShop.Core.Entities.Tag", b =>

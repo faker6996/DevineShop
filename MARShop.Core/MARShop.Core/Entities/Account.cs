@@ -1,5 +1,4 @@
 ﻿using MARShop.Core.Common;
-using System;
 using System.Collections.Generic;
 
 namespace MARShop.Core.Entities

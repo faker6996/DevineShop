@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MARShop.Application.Handlers.AccountHandler.Commands.Create;
 using MARShop.Application.Handlers.AccountHandler.Commands.CreateOrUpdate;
+using MARShop.Application.Handlers.AccountHandler.Queries.Paging;
 using MARShop.Core.Entities;
 using System;
 
@@ -26,6 +27,7 @@ namespace MARShop.Application.Mapper
         {
             CreateMap<CreateOrUpdateClientCommand, Account>();
             CreateMap<CreateAccountClientCommand, Account>();
+            CreateMap<Account, AccountRespond>();
         }
     }
 }

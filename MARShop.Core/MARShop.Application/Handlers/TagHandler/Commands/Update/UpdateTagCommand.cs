@@ -27,13 +27,13 @@ namespace MARShop.Application.Handlers.TagHandler.Commands.Update
             var tag = await _unitOfWork.Tags.DFistOrDefaultAsync(a => a.Id == request.Id);
             if (tag == null)
             {
-                throw new AppException("Tag dont exist");
+                throw new AppException("Nhãn không tồn tại");
             }
 
             // check name of tag duplicate
             if (await IsExistTag(request.Title))
             {
-                throw new AppException("Tag name is duplicate");
+                throw new AppException("Tên nhãn đã tồn tại");
             }
 
             tag.Title = request.Title;

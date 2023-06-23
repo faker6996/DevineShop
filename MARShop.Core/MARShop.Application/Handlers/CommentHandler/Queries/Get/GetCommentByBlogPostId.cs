@@ -2,6 +2,7 @@
 using MARShop.Application.Middleware;
 using MARShop.Infastructure.UnitOfWork;
 using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -31,6 +32,8 @@ namespace MARShop.Application.Handlers.CommentHandler.Queries.Get
         public string AccountLinkWeb { get; set; }
         public string CommentId { get; set; }
         public string CommentContent { get; set; }
+        public DateTime Created { get; set; }
+
     }
 
     public class GetCommentByBlogPostIdQueryHandler : IRequestHandler<GetCommentByBlogPostIdQuery, Respond<CommentsRespond>>
@@ -45,7 +48,7 @@ namespace MARShop.Application.Handlers.CommentHandler.Queries.Get
         {
             // check blog post exist
             var blogPost = await _unitOfWork.BlogPosts.DFistOrDefaultAsync(a => a.Id == request.Id);
-            if (blogPost == null) throw new AppException("Account dont exist");
+            if (blogPost == null) throw new AppException("Bài viết không tồn tại");
 
             var comments = _unitOfWork.Comments.DGet(a => a.BlogPostId == request.Id).ToList();
 
@@ -63,7 +66,8 @@ namespace MARShop.Application.Handlers.CommentHandler.Queries.Get
                     AccountEmail = account.Email,
                     AccountLinkWeb = account.LinkWeb,
                     CommentId = commentDontHaveParent.Id,
-                    CommentContent = commentDontHaveParent.Content
+                    CommentContent = commentDontHaveParent.Content,
+                    Created = commentDontHaveParent.Created
                 });
             }
 
@@ -83,6 +87,7 @@ namespace MARShop.Application.Handlers.CommentHandler.Queries.Get
                     AccountLinkWeb = account.LinkWeb,
                     CommentId = commentHaveParent.Id,
                     CommentContent = commentHaveParent.Content,
+                    Created = commentHaveParent.Created
                 });
             }
 

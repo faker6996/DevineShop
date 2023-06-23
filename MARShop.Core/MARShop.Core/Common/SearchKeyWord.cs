@@ -39,6 +39,8 @@ namespace MARShop.Core.Common
 
         private static string PreprocessText(string input)
         {
+            if (input == null) return "";
+
             // Thay thế các ký tự "d", "đ", "Đ", "D" thành "d"
             input = input.Replace("đ", "d").Replace("Đ", "d").Replace("D", "d");
 

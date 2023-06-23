@@ -30,7 +30,7 @@ namespace MARShop.Application.Handlers.AccountHandler.Commands.CreateOrUpdate
             // check blogPostExist
             if (!await IsBlogPostsExist(request.BlogPostId))
             {
-                throw new AppException("Blog post don't exist");
+                throw new AppException("Bài viết không tồn tại");
             }
 
             var existAccount = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Email == request.Email);

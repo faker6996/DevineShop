@@ -45,7 +45,7 @@ namespace MARShop.Application.Handlers.AccountHandler.Queries.Auth
                 var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Email == request.Email);
 
                 if (account == null) throw new AppException("Email không có trong hệ thống");
-                if (!BCrypt.Net.BCrypt.Verify(request.Password, account.Password)) throw new AppException("Wrong password");
+                if (!BCrypt.Net.BCrypt.Verify(request.Password, account.Password)) throw new AppException("Sai mật khẩu");
 
                 var token = CreateToken(account);
                 var authRespond = new AuthRespond()
