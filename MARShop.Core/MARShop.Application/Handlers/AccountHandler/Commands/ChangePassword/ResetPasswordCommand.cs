@@ -46,7 +46,7 @@ namespace MARShop.Application.Handlers.AccountHandler.Commands.ChangePassword
                 Body = $"<body>\r\n<p>Xin chào,</p>\r\n<p>Chúng tôi đã nhận được yêu cầu khôi phục mật khẩu từ bạn. Bạn vui lòng đăng nhập tài khoản với mật khẩu sau: <b>{randomPassword}</b>, rồi sau đó bạn hãy thiết lập mật khẩu mới.</p>\r\n</body>"
             };
 
-            await _mediator.Send(emailQuery);
+            _mediator.Send(emailQuery);
 
             return Respond.Success();
         }

@@ -59,7 +59,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Create
             await _unitOfWork.SaveAsync();
 
             var emailSubcribers = _unitOfWork.Accounts.DGet(a => a.IsSendEmailWhenHaveNewPost == true).Select(a => a.Email).ToList();
-            await SendEmailToSubcriberAsync(emailSubcribers,blogPost);
+            SendEmailToSubcriberAsync(emailSubcribers,blogPost);
 
             return Respond.Success();
         }
@@ -102,7 +102,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Create
                     Body = $"<body>\r\n<p>Xin chào,</p>\r\n<p>Tác giả đã có bài viêt mới, bạn có thể đón đọc tại đường dẫn: <a href=\"{_configuration["FrontEndEndPoint"]}{blogPost.Category}/{blogPost.Slug}\">{blogPost.Title}</a>.</p>\r\n</body>"
                 };
 
-                await _mediator.Send(emailQuery);
+                _mediator.Send(emailQuery);
             }
         }
     }
