@@ -16,6 +16,8 @@ namespace MARShop.Application.Handlers.ContactHandler.Queries.Get
     {
         public string Facebook { get; set; }
         public string Linkedin { get; set; }
+        public string Email { get; set; }
+        public string Zalo { get; set; }
     }
 
     public class GetContactQueryHandler : IRequestHandler<GetContactQuery, Respond<GetContactRespond>>

@@ -18,7 +18,9 @@ namespace MARShop.Infastructure.Persistence.Seed
                 IsDelete = false,
                 LastModified = DateTime.Now,
                 Facebook = "",
-                Linkedin = ""
+                Linkedin = "",
+                Email= "",
+                Zalo= "",
             };
 
             contacts.Add(onlyFirstContact);

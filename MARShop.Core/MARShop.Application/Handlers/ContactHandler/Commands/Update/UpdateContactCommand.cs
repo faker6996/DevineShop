@@ -11,6 +11,8 @@ namespace MARShop.Application.Handlers.ContactHandler.Commands.Update
     {
         public string Facebook { get; set; }
         public string Linkedin { get; set; }
+        public string Email { get; set; }
+        public string Zalo { get; set; }
     }
 
     public class UpdateContactCommandHandler : IRequestHandler<UpdateContactCommand, Respond>
@@ -28,6 +30,8 @@ namespace MARShop.Application.Handlers.ContactHandler.Commands.Update
 
             contact.Facebook = request.Facebook;
             contact.Linkedin = request.Linkedin;
+            contact.Email = request.Email;
+            contact.Zalo = request.Zalo;
 
             await _unitOfWork.Contacts.DUpdateAsync(contact);
 

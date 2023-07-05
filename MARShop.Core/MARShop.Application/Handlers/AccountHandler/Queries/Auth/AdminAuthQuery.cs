@@ -1,4 +1,6 @@
 ﻿using MARShop.Application.Common;
+using MARShop.Application.Middleware;
+using MARShop.Core.Entities;
 using MARShop.Infastructure.UnitOfWork;
 using MediatR;
 using Microsoft.IdentityModel.Tokens;
@@ -6,48 +8,46 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System;
-using System.Threading;
 using System.Threading.Tasks;
-using MARShop.Core.Entities;
+using System.Threading;
+using System;
 using Microsoft.Extensions.Configuration;
-using MARShop.Application.Middleware;
+using MARShop.Core.Enum;
 
 namespace MARShop.Application.Handlers.AccountHandler.Queries.Auth
 {
-    public class AuthQuery : IRequest<Respond<AuthRespond>>
+    public class AdminAuthQuery : IRequest<Respond<AdminAuthRespond>>
     {
         public string Email { get; set; }
         public string Password { get; set; }
     }
-
-    public class AuthRespond
+    public class AdminAuthRespond
     {
         public string AccountId { get; set; }
         public string AccountEmail { get; set; }
         public string AccountName { get; set; }
         public string Token { get; set; }
     }
-    public class AuthQueryHandler : IRequestHandler<AuthQuery, Respond<AuthRespond>>
+    public class AdminAuthQueryHandler : IRequestHandler<AdminAuthQuery, Respond<AdminAuthRespond>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConfiguration _configuration;
 
-        public AuthQueryHandler(IUnitOfWork unitOfWork, IConfiguration configuration)
+        public AdminAuthQueryHandler(IUnitOfWork unitOfWork, IConfiguration configuration)
         {
             _unitOfWork = unitOfWork;
             _configuration = configuration;
         }
 
-        public async Task<Respond<AuthRespond>> Handle(AuthQuery request, CancellationToken cancellationToken)
+        public async Task<Respond<AdminAuthRespond>> Handle(AdminAuthQuery request, CancellationToken cancellationToken)
         {
-            var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Email == request.Email);
+            var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Email == request.Email && a.Role == nameof(Role.Admin));
 
-            if (account == null) throw new AppException("Email không có trong hệ thống");
+            if (account == null) throw new AppException("Email Admin không có trong hệ thống");
             if (!BCrypt.Net.BCrypt.Verify(request.Password, account.Password)) throw new AppException("Sai mật khẩu");
 
             var token = CreateToken(account);
-            var authRespond = new AuthRespond()
+            var authRespond = new AdminAuthRespond()
             {
                 AccountId = account.Id,
                 AccountEmail = account.Email,
@@ -55,7 +55,7 @@ namespace MARShop.Application.Handlers.AccountHandler.Queries.Auth
                 Token = token
             };
 
-            return Respond<AuthRespond>.Success(authRespond);
+            return Respond<AdminAuthRespond>.Success(authRespond);
         }
         private string CreateToken(Account user)
         {

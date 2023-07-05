@@ -16,7 +16,7 @@ namespace MARShop.API.Controllers
         }
 
         [HttpPatch()]
-        public async Task<ActionResult> ChangePass([FromBody] UpdateEmailConfigCommand command) => Ok(await _mediator.Send(command));
+        public async Task<ActionResult> Update([FromBody] UpdateEmailConfigCommand command) => Ok(await _mediator.Send(command));
 
         [HttpGet()]
         public async Task<ActionResult> Get()

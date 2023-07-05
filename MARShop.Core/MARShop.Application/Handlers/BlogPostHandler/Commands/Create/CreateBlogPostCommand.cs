@@ -2,6 +2,7 @@
 using MARShop.Application.Handlers.EmailHandler.Queries;
 using MARShop.Application.Mapper;
 using MARShop.Application.Middleware;
+using MARShop.Application.Share;
 using MARShop.Core.Common;
 using MARShop.Core.Entities;
 using MARShop.Infastructure.UnitOfWork;
@@ -99,7 +100,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Create
                 {
                     ToMail = email,
                     Subject = "ĐÃ CÓ BÀI VIẾT MỚI",
-                    Body = $"<body>\r\n<p>Xin chào,</p>\r\n<p>Tác giả đã có bài viêt mới, bạn có thể đón đọc tại đường dẫn: <a href=\"{_configuration["FrontEndEndPoint"]}{blogPost.Category}/{blogPost.Slug}\">{blogPost.Title}</a>.</p>\r\n</body>"
+                    Body = $"<body>\r\n<p>Xin chào,</p>\r\n<p>Tác giả đã có bài viêt mới, bạn có thể đón đọc tại đường dẫn: <a href=\"{_configuration["FrontEndEndPoint"]}{blogPost.Category.ToSubLink()}/{blogPost.Slug}\">{blogPost.Title}</a>.</p>\r\n</body>"
                 };
 
                 _mediator.Send(emailQuery);

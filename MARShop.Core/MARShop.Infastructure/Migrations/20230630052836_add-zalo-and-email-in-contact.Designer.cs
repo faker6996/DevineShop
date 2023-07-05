@@ -3,15 +3,17 @@ using System;
 using MARShop.Infastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace MARShop.Infastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230630052836_add-zalo-and-email-in-contact")]
+    partial class addzaloandemailincontact
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,12 +63,12 @@ namespace MARShop.Infastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "04744fd5-b0e0-43cb-981d-e65c87f6c250",
-                            Created = new DateTime(2023, 6, 30, 13, 40, 7, 726, DateTimeKind.Local).AddTicks(3683),
+                            Id = "a09db4ad-fc61-4f17-89a8-4974719ce2d0",
+                            Created = new DateTime(2023, 6, 30, 12, 28, 36, 231, DateTimeKind.Local).AddTicks(566),
                             IsDelete = false,
                             IsSendEmailWhenHaveNewPost = false,
-                            LastModified = new DateTime(2023, 6, 30, 13, 40, 7, 727, DateTimeKind.Local).AddTicks(290),
-                            Password = "$2a$11$MT9kkyBugM.nUGRo024PreR/on9ePyegj3tWHlsl2NDklRqB6oe8m",
+                            LastModified = new DateTime(2023, 6, 30, 12, 28, 36, 232, DateTimeKind.Local).AddTicks(2530),
+                            Password = "$2a$11$mWcjT4Kz0Q3h9wLd4UxHYuRlUtd2ZgzwrQAynAAphMUCVgTiUx5Lm",
                             Role = "Admin",
                             UserName = "superadmin"
                         });
@@ -244,14 +246,12 @@ namespace MARShop.Infastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1b53bad1-2aaa-4ba1-afb0-18be3e8dfc57",
-                            Created = new DateTime(2023, 6, 30, 13, 40, 7, 859, DateTimeKind.Local).AddTicks(5941),
-                            Email = "",
+                            Id = "dfff0861-1fd7-44ab-89b2-d440c0942103",
+                            Created = new DateTime(2023, 6, 30, 12, 28, 36, 362, DateTimeKind.Local).AddTicks(3527),
                             Facebook = "",
                             IsDelete = false,
-                            LastModified = new DateTime(2023, 6, 30, 13, 40, 7, 859, DateTimeKind.Local).AddTicks(5959),
-                            Linkedin = "",
-                            Zalo = ""
+                            LastModified = new DateTime(2023, 6, 30, 12, 28, 36, 362, DateTimeKind.Local).AddTicks(3544),
+                            Linkedin = ""
                         });
                 });
 
@@ -278,17 +278,6 @@ namespace MARShop.Infastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("EmailConfigs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "832910d8-bc53-4466-b0c0-afc4a83b630e",
-                            AppPassword = "",
-                            Created = new DateTime(2023, 6, 30, 13, 40, 7, 859, DateTimeKind.Local).AddTicks(9415),
-                            Email = "",
-                            IsDelete = false,
-                            LastModified = new DateTime(2023, 6, 30, 13, 40, 7, 859, DateTimeKind.Local).AddTicks(9421)
-                        });
                 });
 
             modelBuilder.Entity("MARShop.Core.Entities.Notify", b =>

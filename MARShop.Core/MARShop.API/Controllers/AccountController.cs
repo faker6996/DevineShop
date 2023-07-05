@@ -28,6 +28,9 @@ namespace MARShop.API.Controllers
         public async Task<ActionResult> AuthValidate() => Ok();
         [HttpPost("Auth")]
         public async Task<ActionResult> Auth([FromBody] AuthQuery query) => Ok(await _mediator.Send(query));
+        
+        [HttpPost("Auth-Admin")]
+        public async Task<ActionResult> AuthAdmin([FromBody] AdminAuthQuery query) => Ok(await _mediator.Send(query));
 
         [HttpPatch("ChangePass")]
         public async Task<ActionResult> ChangePass([FromBody] ChangePasswordAdminCommand command) => Ok(await _mediator.Send(command));

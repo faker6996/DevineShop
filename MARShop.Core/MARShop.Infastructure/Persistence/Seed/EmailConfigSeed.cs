@@ -20,6 +20,9 @@ namespace MARShop.Infastructure.Persistence.Seed
                 Email="",
                 AppPassword=""
             };
+            emailConfigs.Add(emailConfig);
+
+            modelBuilder.Entity<EmailConfig>().HasData(emailConfigs);
         }
     }
 }
