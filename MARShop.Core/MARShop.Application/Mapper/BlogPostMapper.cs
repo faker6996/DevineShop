@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MARShop.Application.Handlers.BlogPostHandler.Commands.Create;
+using MARShop.Application.Handlers.BlogPostHandler.Commands.Update;
 using MARShop.Application.Handlers.BlogPostHandler.Queries.Get;
 using MARShop.Core.Entities;
 using System;
@@ -25,6 +26,8 @@ namespace MARShop.Application.Mapper
         public BlogPostMappingProfile()
         {
             CreateMap<CreateBlogPostCommand, BlogPost>();
+            CreateMap<UpdateBlogPostCommand, BlogPost>()
+                .ForMember(dest=>dest.Id, opt=>opt.Ignore());
             CreateMap<BlogPost, BlogPostRespond>();
             CreateMap<BlogPost, BlogPostBySlugRespond>();
         }

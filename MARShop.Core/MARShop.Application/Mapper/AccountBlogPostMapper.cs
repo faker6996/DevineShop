@@ -24,7 +24,9 @@ namespace MARShop.Application.Mapper
     {
         public AccountBlogPostProfile()
         {
-            CreateMap<UpdateLikeBlogPostCommand, AccountBlogPost>();
+            CreateMap<UpdateLikeBlogPostCommand, AccountBlogPost>()
+                .ForMember(dest=>dest.AccountId,opt=> opt.Ignore())
+                .ForMember(dest=>dest.BlogPostId, opt=> opt.Ignore());
             CreateMap<AccountBlogPost, AccountBlogPostRespond>();
         }
     }

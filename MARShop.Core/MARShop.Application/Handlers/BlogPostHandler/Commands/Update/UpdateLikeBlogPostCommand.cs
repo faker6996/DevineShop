@@ -6,8 +6,6 @@ using MARShop.Core.Entities;
 using MARShop.Core.Enum;
 using MARShop.Infastructure.UnitOfWork;
 using MediatR;
-using System.ComponentModel;
-using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -55,6 +53,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
             // update account blog post
             else
             {
+                AccountMapper.Mapper.Map(request, accountBlogPost);
                 accountBlogPost.IsLiked = request.IsLike;
                 await _unitOfWork.AccountBlogPosts.DUpdateAsync(accountBlogPost);
             }

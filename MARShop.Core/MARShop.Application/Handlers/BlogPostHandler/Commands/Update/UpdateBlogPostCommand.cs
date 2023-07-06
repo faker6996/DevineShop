@@ -1,4 +1,5 @@
 ﻿using MARShop.Application.Common;
+using MARShop.Application.Mapper;
 using MARShop.Application.Middleware;
 using MARShop.Core.Entities;
 using MARShop.Infastructure.UnitOfWork;
@@ -38,12 +39,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
                 throw new AppException("Bài viết không tồn tại");
             }
 
-            // Update blog post
-            blogPost.Title = request.Title;
-            blogPost.Image = request.Image;
-            blogPost.Content = request.Content;
-            blogPost.Category = request.Category;
-            blogPost.Summary = request.Summary;
+            BlogPostMapper.Mapper.Map(request, blogPost);
 
             await _unitOfWork.BlogPosts.DUpdateAsync(blogPost);
 
