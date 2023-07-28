@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using NLog.Web;
+using System.IO;
 
 namespace MARShop.API
 {
@@ -7,15 +10,21 @@ namespace MARShop.API
     {
         public static void Main(string[] args)
         {
+            var logPath = Path.Combine(Directory.GetCurrentDirectory(), "Logs");
+            NLog.GlobalDiagnosticsContext.Set("LogDirectory", logPath);
+
             CreateHostBuilder(args).Build().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
-                {               
-                    webBuilder.UseUrls("http://103.229.41.235:5001");
+                {
                     webBuilder.UseStartup<Startup>();
-                });
+                }).ConfigureLogging(opt =>
+                {
+                    opt.ClearProviders();
+                    opt.SetMinimumLevel(LogLevel.Trace);
+                }).UseNLog();
     }
 }

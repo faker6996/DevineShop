@@ -3,10 +3,10 @@ using MARShop.Application.Handlers.AccountHandler.Commands.Create;
 using MARShop.Application.Handlers.AccountHandler.Commands.Delete;
 using MARShop.Application.Handlers.AccountHandler.Queries.Auth;
 using MARShop.Application.Handlers.AccountHandler.Queries.Paging;
-using MARShop.Application.Handlers.BlogPostHandler.Queries.Paging;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
 namespace MARShop.API.Controllers

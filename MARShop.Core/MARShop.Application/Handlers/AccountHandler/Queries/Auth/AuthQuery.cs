@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using MARShop.Core.Entities;
 using Microsoft.Extensions.Configuration;
 using MARShop.Application.Middleware;
+using Microsoft.Extensions.Logging;
 
 namespace MARShop.Application.Handlers.AccountHandler.Queries.Auth
 {
@@ -32,15 +33,18 @@ namespace MARShop.Application.Handlers.AccountHandler.Queries.Auth
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<AuthQueryHandler> _logger;
 
-        public AuthQueryHandler(IUnitOfWork unitOfWork, IConfiguration configuration)
+        public AuthQueryHandler(IUnitOfWork unitOfWork, IConfiguration configuration,ILogger<AuthQueryHandler> logger)
         {
             _unitOfWork = unitOfWork;
             _configuration = configuration;
+            _logger = logger;
         }
 
         public async Task<Respond<AuthRespond>> Handle(AuthQuery request, CancellationToken cancellationToken)
         {
+            _logger.LogTrace(@"Method auth called.");
             var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Email == request.Email);
 
             if (account == null) throw new AppException("Email không có trong hệ thống");
