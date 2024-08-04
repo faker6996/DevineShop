@@ -17,8 +17,8 @@ namespace MARShop.Infastructure.Persistence.Seed
                 Created = DateTime.Now,
                 IsDelete = false,
                 LastModified = DateTime.Now,
-                Email="",
-                AppPassword=""
+                Email= "kieuminhduc02@gmail.com",
+                AppPassword= "ybri advf vvni efko"
             };
             emailConfigs.Add(emailConfig);
 

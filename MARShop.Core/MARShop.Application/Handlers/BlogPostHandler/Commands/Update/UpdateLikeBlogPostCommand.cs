@@ -53,7 +53,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
             // update account blog post
             else
             {
-                AccountMapper.Mapper.Map(request, accountBlogPost);
+                AccountBlogPostMapper.Mapper.Map(request, accountBlogPost);
                 accountBlogPost.IsLiked = request.IsLike;
                 await _unitOfWork.AccountBlogPosts.DUpdateAsync(accountBlogPost);
             }

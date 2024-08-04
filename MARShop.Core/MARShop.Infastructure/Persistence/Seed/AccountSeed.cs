@@ -20,6 +20,7 @@ namespace MARShop.Infastructure.Persistence.Seed
                 LastModified = DateTime.Now,
                 UserName = "superadmin",
                 Password = BCrypt.Net.BCrypt.HashPassword("admin@123"),
+                Email = "kieuminhduc02@gmail.com",
                 Role = nameof(Role.Admin),
 
             };
