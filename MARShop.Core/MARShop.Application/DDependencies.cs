@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace MARShop.Application
 {
@@ -9,7 +10,7 @@ namespace MARShop.Application
            this IServiceCollection services)
         {
             return services
-                .AddMediatR(typeof(DDependencies).Assembly);
+                .AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
         }
     }
 }

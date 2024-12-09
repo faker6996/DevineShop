@@ -44,6 +44,7 @@ namespace MARShop.API
 
             services.AddAutoMapper(typeof(Startup));
 
+
             services.AddRepositoriesAndUnitOfWork();
 
             services.AddRequestHandlers();
