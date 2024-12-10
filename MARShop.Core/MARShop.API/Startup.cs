@@ -13,6 +13,7 @@ using System.Text;
 using MARShop.Application;
 using MARShop.Application.Middleware;
 using MARShop.Application.Hubs;
+using System;
 
 namespace MARShop.API
 {
@@ -40,7 +41,38 @@ namespace MARShop.API
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MARShop.API", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Enter 'Bearer' [space] and your token."
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                    {
+                        {
+                            new OpenApiSecurityScheme   
+                            {
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "Bearer"
+                                }
+                            },
+                            Array.Empty<string>()
+                        }
+                    });
             });
+
+            // Logging cho EF Core
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("FPTBlogDB"))
+                .LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information));
+
+
 
             services.AddAutoMapper(typeof(Startup));
 
@@ -104,7 +136,7 @@ namespace MARShop.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers(); 
+                endpoints.MapControllers();
                 endpoints.MapHub<NotificationHub>("/notificationHub");
             });
         }
