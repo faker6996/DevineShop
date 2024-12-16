@@ -17,7 +17,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Paging
         public int PerPage { get; set; }
         public int CurrentPage { get; set; }
         public ShortRelevant ShortBy { get; set; } // values are Created, LastModified, Like, View
-        public string BlogPostId { get; set; }
+        public int BlogPostId { get; set; }
     }
     public class ShortRelevant
     {
@@ -26,13 +26,13 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Paging
     }
     public class BlogPostRelevantRespond
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Image { get; set; }
         public string Slug { get; set; }
         public int Views { get; set; }
         public int Likes { get; set; }
-        public string Category { get; set; }
+        public int Category { get; set; }
         public string Summary { get; set; }
         public DateTime Created { get; set; }
         public IList<TagRelevantRespond> Tags { get; set; }
@@ -40,7 +40,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Paging
 
     public class TagRelevantRespond
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
     }
 
@@ -100,11 +100,11 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Paging
             var tagIdsFilter = _unitOfWork.BlogPostTags.DGet(a => a.BlogPostId == currentBlogPost.Id).Select(a => a.TagId).ToList();
 
             // Get blog posts id have need tags
-            var blogPostIdsHasNeedTag = new List<string>();
+            var blogPostIdsHasNeedTag = new List<int>();
             foreach (var tagId in tagIdsFilter)
             {
                 var blogPostIdsHasCurrentTag = _unitOfWork.BlogPostTags.DGet(a => a.TagId == tagId).Select(a => a.BlogPostId).ToList();
-                blogPostIdsHasNeedTag.AddRange(blogPostIdsHasCurrentTag);
+                blogPostIdsHasNeedTag.AddRange((IEnumerable<int>)blogPostIdsHasCurrentTag);
             }
 
 
@@ -157,7 +157,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Paging
             return blogPosts;
         }
 
-        private IQueryable<TagRelevantRespond> GetTagsByBlogPost(string blogPostId)
+        private IQueryable<TagRelevantRespond> GetTagsByBlogPost(int blogPostId)
         {
             return from blogPostTag in _unitOfWork.BlogPostTags.DGetAll()
                    join tag in _unitOfWork.Tags.DGetAll()

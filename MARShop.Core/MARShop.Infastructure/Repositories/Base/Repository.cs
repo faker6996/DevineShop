@@ -27,7 +27,6 @@ namespace MARShop.Infastructure.Repositories.Base
         {
             var now = System.DateTime.Now;
 
-            entity.Id = Guid.NewGuid().ToString();
             entity.Created = now;
             entity.LastModified = now;
             entity.IsDelete = false;
@@ -41,7 +40,7 @@ namespace MARShop.Infastructure.Repositories.Base
             entity.IsDelete = true;
             _context.Entry(entity).State = EntityState.Modified;
         }
-        public async Task DeleteByIdAsync(string id)
+        public async Task DeleteByIdAsync(int id)
         {
             var entity = await _db.FindAsync(id);
             entity.IsDelete = true;
@@ -88,7 +87,7 @@ namespace MARShop.Infastructure.Repositories.Base
         {
             return  _db.Where(a => a.IsDelete == false).Where(predicate).AsQueryable();
         }
-        public async Task<T> DGetByIdAsync(string id)
+        public async Task<T> DGetByIdAsync(int id)
         {
             var entity = await _db.SingleOrDefaultAsync(t => t.Id.Equals(id));
             if (entity?.IsDelete == true)

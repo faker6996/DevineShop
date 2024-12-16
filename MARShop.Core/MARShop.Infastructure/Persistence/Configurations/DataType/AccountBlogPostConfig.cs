@@ -8,7 +8,9 @@ namespace MARShop.Infastructure.Persistence.Configurations.DataType
     {
         public void Configure(EntityTypeBuilder<AccountBlogPost> builder)
         {
-            builder.Property(accountBlogPost => accountBlogPost.Id).IsRequired();
+            builder.Property(accountBlogPost => accountBlogPost.Id)
+                .IsRequired()
+                .ValueGeneratedOnAdd();
             builder.Property(accountBlogPost => accountBlogPost.AccountId).IsRequired();
             builder.Property(accountBlogPost => accountBlogPost.BlogPostId).IsRequired();
         }

@@ -8,7 +8,10 @@ namespace MARShop.Infastructure.Persistence.Configurations.DataType
     {
         public void Configure(EntityTypeBuilder<Account> builder)
         {
-            builder.Property(account => account.Id).IsRequired();
+            // Cấu hình Id tự tăng
+            builder.Property(account => account.Id)
+                .IsRequired()
+                .ValueGeneratedOnAdd(); // Thiết lập tự tăng
         }
     }
 }

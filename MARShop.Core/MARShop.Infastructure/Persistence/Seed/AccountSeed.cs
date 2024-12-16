@@ -14,7 +14,7 @@ namespace MARShop.Infastructure.Persistence.Seed
 
             var superAdmin = new Account()
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = 1,
                 Created = DateTime.Now,
                 IsDelete = false,
                 LastModified = DateTime.Now,

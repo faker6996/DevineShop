@@ -16,7 +16,7 @@ namespace MARShop.Application.Handlers.AccountHandler.Commands.CreateOrUpdate
         public string LinkWeb { get; set; }
         public bool IsSendEmailWhenHaveNewPost { get; set; }
         public bool IsSendEmailWhenHaveNewComment { get; set; }
-        public string BlogPostId { get; set; }
+        public int BlogPostId { get; set; }
     }
     public class CreateOrUpdateClientCommandHandler : IRequestHandler<CreateOrUpdateClientCommand, Respond>
     {
@@ -88,7 +88,7 @@ namespace MARShop.Application.Handlers.AccountHandler.Commands.CreateOrUpdate
 
             await _unitOfWork.SaveAsync();
         }
-        private async Task<bool> IsBlogPostsExist(string blogPostId)
+        private async Task<bool> IsBlogPostsExist(int blogPostId)
         {
             var blogPost = await _unitOfWork.BlogPosts.DFistOrDefaultAsync(a => a.Id == blogPostId);
             return blogPost != null;

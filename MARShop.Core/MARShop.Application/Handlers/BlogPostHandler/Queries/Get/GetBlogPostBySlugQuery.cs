@@ -17,7 +17,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Get
     }
     public class BlogPostBySlugRespond
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public DateTime Created { get; set; }
         public string Title { get; set; }
         public string Image { get; set; }
@@ -31,7 +31,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Get
     }
     public class TagBySlugRespond
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
     }
 
@@ -61,7 +61,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Get
 
             return Respond<BlogPostBySlugRespond>.Success(blogPostRespond);
         }
-        private async Task<IList<TagBySlugRespond>> GetTagResponds(string blogPostId)
+        private async Task<IList<TagBySlugRespond>> GetTagResponds(int blogPostId)
         {
             var blogPostTags = _unitOfWork.BlogPostTags.DGet(a => a.BlogPostId == blogPostId).ToList();
 
@@ -78,7 +78,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Get
             }
             return tags;
         }
-        private int GetLikes(string blogPostId)
+        private int GetLikes(int blogPostId)
         {
             return _unitOfWork.AccountBlogPosts.DGet(a => a.BlogPostId == blogPostId && a.IsLiked == true).Count();
         }

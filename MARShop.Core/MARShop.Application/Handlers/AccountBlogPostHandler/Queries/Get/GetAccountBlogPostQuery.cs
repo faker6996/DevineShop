@@ -10,14 +10,14 @@ namespace MARShop.Application.Handlers.AccountBlogPostHandler.Queries.Get
 {
     public class GetAccountBlogPostQuery : IRequest<Respond<AccountBlogPostRespond>>
     {
-        public string AccountId { get; set; }
-        public string BlogPostId { get; set; }
+        public int AccountId { get; set; }
+        public int BlogPostId { get; set; }
     }
 
     public class AccountBlogPostRespond
     {
-        public string AccountId { get; set; }
-        public string BlogPostId { get; set; }
+        public int AccountId { get; set; }
+        public int BlogPostId { get; set; }
         public bool IsLiked { get; set; }
         public bool IsSendEmailWhenHaveNewComment { get; set; }
     }

@@ -15,7 +15,7 @@ namespace MARShop.Infastructure.Repositories.Base
 
         // Delete
         Task DDeleteAsync(T entity);
-        Task DeleteByIdAsync(string id);
+        Task DeleteByIdAsync(int id);
         Task DDeleteAsync(Expression<Func<T, bool>> predicate);
 
         // Update
@@ -27,7 +27,7 @@ namespace MARShop.Infastructure.Repositories.Base
         IQueryable<T> DGetAll();
         Task<IReadOnlyList<T>> DGetPagingAsync(int skip, int pageSize);
         IQueryable<T> DGet(Func<T, bool> predicate);
-        Task<T> DGetByIdAsync(string id);
+        Task<T> DGetByIdAsync(int id);
         DbSet<T> DGetDbSet();
         
         // Count

@@ -22,7 +22,7 @@ namespace MARShop.API.Controllers
         public async Task<ActionResult<Respond>> Create([FromBody] CreateCommentCommand command) => Ok(await _mediator.Send(command));
 
         [HttpGet]
-        public async Task<ActionResult> GetByBlogPostId(string blogPostId)
+        public async Task<ActionResult> GetByBlogPostId(int blogPostId)
         {
             var query = new GetCommentByBlogPostIdQuery() { Id = blogPostId };
             return Ok(await _mediator.Send(query));

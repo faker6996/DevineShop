@@ -22,7 +22,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Create
         public string Content { get; set; }
         public string Category { get; set; }
         public string Summary { get; set; }
-        public IList<string> TagIds { get; set; }
+        public IList<int> TagIds { get; set; }
     }
 
     public class CreateBlogPostCommandHandler : IRequestHandler<CreateBlogPostCommand, Respond>
@@ -65,7 +65,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Create
             return Respond.Success();
         }
 
-        private async Task CreateBlogPostTags(string blogPostId, IList<string> tagIds)
+        private async Task CreateBlogPostTags(int blogPostId, IList<int> tagIds)
         {
             // Add new blog post tags
             foreach (var tagId in tagIds)
@@ -100,7 +100,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Create
                 {
                     ToMail = email,
                     Subject = "ĐÃ CÓ BÀI VIẾT MỚI",
-                    Body = $"<body>\r\n<p>Xin chào,</p>\r\n<p>Tác giả đã có bài viêt mới, bạn có thể đón đọc tại đường dẫn: <a href=\"{_configuration["FrontEndEndPoint"]}{blogPost.Category.ToSubLink()}/{blogPost.Slug}\">{blogPost.Title}</a>.</p>\r\n</body>"
+                    Body = $"<body>\r\n<p>Xin chào,</p>\r\n<p>Tác giả đã có bài viêt mới, bạn có thể đón đọc tại đường dẫn: <a href=\"{_configuration["FrontEndEndPoint"]}{blogPost.Category}/{blogPost.Slug}\">{blogPost.Title}</a>.</p>\r\n</body>"
                 };
 
                 _mediator.Send(emailQuery);

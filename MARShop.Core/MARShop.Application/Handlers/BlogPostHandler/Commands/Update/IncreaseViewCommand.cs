@@ -9,7 +9,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
 {
     public class IncreaseViewCommand : IRequest<Respond>
     {
-        public string BlogPostId { get; set; }
+        public int BlogPostId { get; set; }
     }
 
     public class IncreaseViewCommandHandler : IRequestHandler<IncreaseViewCommand, Respond>
