@@ -14,9 +14,9 @@ namespace MARShop.Application.Handlers.CommentHandler.Commands.Create
 {
     public class CreateCommentCommand : IRequest<Respond>
     {
-        public string AccountId { get; set; }
-        public string BlogPostId { get; set; }
-        public string ParentId { get; set; }
+        public int AccountId { get; set; }
+        public int BlogPostId { get; set; }
+        public int ParentId { get; set; }
         public string Content { get; set; }
     }
 

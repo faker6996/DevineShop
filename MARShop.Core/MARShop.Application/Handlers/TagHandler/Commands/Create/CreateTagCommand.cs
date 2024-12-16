@@ -17,7 +17,7 @@ namespace MARShop.Application.Handlers.TagHandler.Commands.Create
     public class CreateTagRespond
     {
         public string Title { get; set; }
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
     public class CreateTagCommandHandler : IRequestHandler<CreateTagCommand, Respond<CreateTagRespond>>
     {

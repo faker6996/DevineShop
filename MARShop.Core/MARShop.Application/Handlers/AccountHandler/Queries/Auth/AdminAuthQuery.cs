@@ -23,7 +23,7 @@ namespace MARShop.Application.Handlers.AccountHandler.Queries.Auth
     }
     public class AdminAuthRespond
     {
-        public string AccountId { get; set; }
+        public int AccountId { get; set; }
         public string AccountEmail { get; set; }
         public string AccountName { get; set; }
         public string Token { get; set; }

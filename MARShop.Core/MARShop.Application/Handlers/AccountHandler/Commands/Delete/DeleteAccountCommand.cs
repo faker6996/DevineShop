@@ -9,7 +9,7 @@ namespace MARShop.Application.Handlers.AccountHandler.Commands.Delete
 {
     public class DeleteAccountCommand : IRequest<Respond>
     {
-        public string AccountId { get; set; }
+        public int AccountId { get; set; }
     }
 
     public class DeleteAccountCommandHandler : IRequestHandler<DeleteAccountCommand, Respond>

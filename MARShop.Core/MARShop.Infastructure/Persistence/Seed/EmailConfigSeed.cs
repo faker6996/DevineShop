@@ -13,8 +13,8 @@ namespace MARShop.Infastructure.Persistence.Seed
 
             var emailConfig = new EmailConfig()
             {
-                Id = Guid.NewGuid().ToString(),
                 Created = DateTime.Now,
+                Id = 1,
                 IsDelete = false,
                 LastModified = DateTime.Now,
                 Email= "kieuminhduc02@gmail.com",

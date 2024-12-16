@@ -13,8 +13,8 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
 {
     public class UpdateLikeBlogPostCommand : IRequest<Respond>
     {
-        public string AccountId { get; set; }
-        public string BlogPostId { get; set; }
+        public int AccountId { get; set; }
+        public int BlogPostId { get; set; }
         public bool IsLike { get; set; }
     }
 
@@ -83,13 +83,13 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
             var accountBlogPost = AccountBlogPostMapper.Mapper.Map<AccountBlogPost>(request);
             await _unitOfWork.AccountBlogPosts.DAddAsync(accountBlogPost);
         }
-        private async Task<bool> IsBlogPostsExist(string blogPostId)
+        private async Task<bool> IsBlogPostsExist(int blogPostId)
         {
             var blogPost = await _unitOfWork.BlogPosts.DFistOrDefaultAsync(a => a.Id == blogPostId);
             return blogPost != null;
         }
 
-        private async Task<bool> IsAccountExist(string accountId)
+        private async Task<bool> IsAccountExist(int accountId)
         {
             var account = await _unitOfWork.Accounts.DFistOrDefaultAsync(a => a.Id == accountId);
             return account != null;

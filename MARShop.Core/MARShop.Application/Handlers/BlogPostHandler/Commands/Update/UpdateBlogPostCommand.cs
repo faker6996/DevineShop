@@ -12,14 +12,14 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
 {
     public class UpdateBlogPostCommand : IRequest<Respond>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Image { get; set; }
         public string Content { get; set; }
         public string Category { get; set; }
         public string Summary { get; set; }
 
-        public IList<string> TagIds { get; set; }
+        public IList<int> TagIds { get; set; }
     }
 
     public class UpdateBlogPostCommandHandler : IRequestHandler<UpdateBlogPostCommand, Respond>
@@ -52,7 +52,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
         }
 
 
-        private async Task UpdateBlogPostTags(string blogPostId, IList<string> tagIds)
+        private async Task UpdateBlogPostTags(int blogPostId, IList<int> tagIds)
         {
             // Remove old blog post tags
             var blogPostTags = _unitOfWork.BlogPostTags.DGet(a => a.BlogPostId == blogPostId);

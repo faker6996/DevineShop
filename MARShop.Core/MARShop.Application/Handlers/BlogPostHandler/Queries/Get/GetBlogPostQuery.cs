@@ -13,11 +13,11 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Get
 {
     public class GetBlogPostQuery : IRequest<Respond<BlogPostRespond>>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
     public class BlogPostRespond
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public DateTime Created { get; set; }
         public string Title { get; set; }
         public string Image { get; set; }
@@ -31,7 +31,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Get
     }
     public class TagRespond
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
     }
 
@@ -63,7 +63,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Get
             return Respond<BlogPostRespond>.Success(blogPostRespond);
         }
 
-        private async Task<IList<TagRespond>> GetTagResponds(string blogPostId)
+        private async Task<IList<TagRespond>> GetTagResponds(int blogPostId)
         {
             var blogPostTags = _unitOfWork.BlogPostTags.DGet(a => a.BlogPostId == blogPostId).ToList();
 
@@ -81,7 +81,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Get
             return tags;
         }
 
-        private int GetLikes(string blogPostId)
+        private int GetLikes(int blogPostId)
         {
             return _unitOfWork.AccountBlogPosts.DGet(a => a.BlogPostId == blogPostId && a.IsLiked == true).Count();
         }

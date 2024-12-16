@@ -24,8 +24,11 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.Account", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
@@ -64,13 +67,13 @@ namespace MARShop.Infastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "4f8f98e7-1a2c-4f2d-9494-2452e7ade802",
-                            Created = new DateTime(2024, 12, 10, 4, 38, 17, 291, DateTimeKind.Utc).AddTicks(4147),
+                            Id = 1,
+                            Created = new DateTime(2024, 12, 16, 8, 28, 17, 160, DateTimeKind.Utc).AddTicks(9394),
                             Email = "kieuminhduc02@gmail.com",
                             IsDelete = false,
                             IsSendEmailWhenHaveNewPost = false,
-                            LastModified = new DateTime(2024, 12, 10, 4, 38, 17, 292, DateTimeKind.Utc).AddTicks(7759),
-                            Password = "$2a$11$ABZD0VNMImxGBcxwRzqJROJ3Ab1JqUwEhWwgREp/nhzzHR3OWZbKW",
+                            LastModified = new DateTime(2024, 12, 16, 8, 28, 17, 162, DateTimeKind.Utc).AddTicks(2357),
+                            Password = "$2a$11$DZIJ51W/EJRWeEv8L/AwTemgERlY49uGrfQ./j/4f8d/Id7/WMZUe",
                             Role = "Admin",
                             UserName = "superadmin"
                         });
@@ -78,14 +81,17 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.AccountBlogPost", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-                    b.Property<string>("AccountId")
-                        .HasColumnType("text");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("BlogPostId")
-                        .HasColumnType("text");
+                    b.Property<int?>("AccountId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("BlogPostId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
@@ -113,11 +119,14 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.BlogPost", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-                    b.Property<string>("Category")
-                        .HasColumnType("text");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Category")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Content")
                         .HasColumnType("text");
@@ -153,11 +162,14 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.BlogPostTag", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-                    b.Property<string>("BlogPostId")
-                        .HasColumnType("text");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("BlogPostId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
@@ -168,8 +180,8 @@ namespace MARShop.Infastructure.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("TagId")
-                        .HasColumnType("text");
+                    b.Property<int?>("TagId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -182,14 +194,17 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.Comment", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
 
-                    b.Property<string>("AccountId")
-                        .HasColumnType("text");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("BlogPostId")
-                        .HasColumnType("text");
+                    b.Property<int?>("AccountId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("BlogPostId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Content")
                         .HasColumnType("text");
@@ -203,8 +218,8 @@ namespace MARShop.Infastructure.Migrations
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("ParentId")
-                        .HasColumnType("text");
+                    b.Property<int?>("ParentId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -217,8 +232,11 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.Contact", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");
@@ -248,12 +266,12 @@ namespace MARShop.Infastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "73da585a-ca1f-404c-9e87-c6f81361c039",
-                            Created = new DateTime(2024, 12, 10, 4, 38, 17, 706, DateTimeKind.Utc).AddTicks(8088),
+                            Id = 1,
+                            Created = new DateTime(2024, 12, 16, 8, 28, 17, 489, DateTimeKind.Utc).AddTicks(2595),
                             Email = "",
                             Facebook = "",
                             IsDelete = false,
-                            LastModified = new DateTime(2024, 12, 10, 4, 38, 17, 706, DateTimeKind.Utc).AddTicks(8101),
+                            LastModified = new DateTime(2024, 12, 16, 8, 28, 17, 489, DateTimeKind.Utc).AddTicks(2612),
                             Linkedin = "",
                             Zalo = ""
                         });
@@ -261,8 +279,11 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.EmailConfig", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AppPassword")
                         .HasColumnType("text");
@@ -286,19 +307,22 @@ namespace MARShop.Infastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "232b515c-373d-4e17-86f6-a1c1aea23288",
+                            Id = 1,
                             AppPassword = "ybri advf vvni efko",
-                            Created = new DateTime(2024, 12, 10, 4, 38, 17, 707, DateTimeKind.Utc).AddTicks(3446),
+                            Created = new DateTime(2024, 12, 16, 8, 28, 17, 490, DateTimeKind.Utc).AddTicks(497),
                             Email = "kieuminhduc02@gmail.com",
                             IsDelete = false,
-                            LastModified = new DateTime(2024, 12, 10, 4, 38, 17, 707, DateTimeKind.Utc).AddTicks(3453)
+                            LastModified = new DateTime(2024, 12, 16, 8, 28, 17, 490, DateTimeKind.Utc).AddTicks(515)
                         });
                 });
 
             modelBuilder.Entity("MARShop.Core.Entities.Notify", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Content")
                         .HasColumnType("text");
@@ -331,8 +355,11 @@ namespace MARShop.Infastructure.Migrations
 
             modelBuilder.Entity("MARShop.Core.Entities.Tag", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("timestamp with time zone");

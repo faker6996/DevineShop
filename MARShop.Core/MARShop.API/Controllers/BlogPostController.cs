@@ -39,14 +39,14 @@ namespace MARShop.API.Controllers
         public async Task<ActionResult<Respond>> UpdateLike([FromBody] UpdateLikeBlogPostCommand command) => Ok(await _mediator.Send(command));
 
         [HttpDelete, Route("{id}")]
-        public async Task<ActionResult<Respond>> Delete(string id)
+        public async Task<ActionResult<Respond>> Delete(int id)
         {
             var deleteBlogPostCommand = new DeleteBlogPostCommand() { Id = id };
             return Ok(await _mediator.Send(deleteBlogPostCommand));
         }
 
         [HttpGet]
-        public async Task<ActionResult> Get([FromQuery] string id)
+        public async Task<ActionResult> Get([FromQuery] int id)
         {
             var getBlogPostQuery = new GetBlogPostQuery() { Id = id };
             return Ok(await _mediator.Send(getBlogPostQuery));
@@ -59,7 +59,7 @@ namespace MARShop.API.Controllers
             return Ok(await _mediator.Send(getBlogPostBySlugQuery));
         }
         [HttpGet("Account-Blog-Post")]
-        public async Task<ActionResult> GetAccountBlogPost(string accountId, string blogpostId)
+        public async Task<ActionResult> GetAccountBlogPost(int accountId, int blogpostId)
         {
             var query = new GetAccountBlogPostQuery() { AccountId = accountId, BlogPostId = blogpostId };
             return Ok(await _mediator.Send(query));

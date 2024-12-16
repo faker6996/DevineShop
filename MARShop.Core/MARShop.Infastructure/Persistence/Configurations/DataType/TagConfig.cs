@@ -8,7 +8,7 @@ namespace MARShop.Infastructure.Persistence.Configurations.DataType
     {
         public void Configure(EntityTypeBuilder<Tag> builder)
         {
-            builder.Property(tag => tag.Id).IsRequired();
+            builder.Property(tag => tag.Id).IsRequired().ValueGeneratedOnAdd();
             builder.Property(tag => tag.Title).IsRequired();
         }
     }

@@ -12,7 +12,7 @@ namespace MARShop.Application.Handlers.CommentHandler.Queries.Get
 {
     public class GetCommentByBlogPostIdQuery : IRequest<Respond<CommentsRespond>>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
     public class CommentsRespond
     {
@@ -25,12 +25,12 @@ namespace MARShop.Application.Handlers.CommentHandler.Queries.Get
     }
     public class SubCommentRespond
     {
-        public string AccountId { get; set; }
+        public int AccountId { get; set; }
         public string AccountUsername { get; set; }
         public string AccountName { get; set; }
         public string AccountEmail { get; set; }
         public string AccountLinkWeb { get; set; }
-        public string CommentId { get; set; }
+        public int CommentId { get; set; }
         public string CommentContent { get; set; }
         public DateTime Created { get; set; }
 

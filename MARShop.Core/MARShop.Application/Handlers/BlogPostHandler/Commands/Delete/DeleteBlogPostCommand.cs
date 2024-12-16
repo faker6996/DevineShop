@@ -9,7 +9,7 @@ namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Delete
 {
     public class DeleteBlogPostCommand : IRequest<Respond>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
     }
 
     public class DeleteBlogPostCommandHandler : IRequestHandler<DeleteBlogPostCommand, Respond>

@@ -9,7 +9,7 @@ namespace MARShop.Application.Handlers.TagHandler.Commands.Update
 {
     public class UpdateTagCommand : IRequest<Respond>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
     }
     public class UpdateTagCommandHandler : IRequestHandler<UpdateTagCommand, Respond>

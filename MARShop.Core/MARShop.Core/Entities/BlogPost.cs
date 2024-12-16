@@ -10,7 +10,7 @@ namespace MARShop.Core.Entities
         public string Content { get; set; }
         public string Slug { get; set; }
         public int Views { get; set; }
-        public string Category { get; set; }
+        public int Category { get; set; }
         public string Summary { get; set; }
         public IList<BlogPostTag> BlogPostTags { get; set; }
         public IList<AccountBlogPost> AccountBlogPosts { get; set; }

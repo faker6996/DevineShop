@@ -9,7 +9,7 @@ namespace MARShop.Application.Handlers.TagHandler.Commands.Delete
 {
     public class DeleteTagCommand : IRequest<Respond>
     {
-        public string TagId { get; set; }
+        public int TagId { get; set; }
     }
 
     public class DeleteTagCommandHandler : IRequestHandler<DeleteTagCommand, Respond>

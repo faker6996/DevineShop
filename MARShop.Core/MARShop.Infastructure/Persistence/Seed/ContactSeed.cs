@@ -13,8 +13,8 @@ namespace MARShop.Infastructure.Persistence.Seed
 
             var onlyFirstContact = new Contact()
             {
-                Id = Guid.NewGuid().ToString(),
                 Created = DateTime.Now,
+                Id = 1,
                 IsDelete = false,
                 LastModified = DateTime.Now,
                 Facebook = "",
