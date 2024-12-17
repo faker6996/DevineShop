@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace MARShop.Infastructure.Persistence.Configurations.DataType
+namespace DevineShop.Infastructure.Persistence.Configurations.DataType
 {
     internal static class DataTypeConfig
     {

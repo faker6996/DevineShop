@@ -1,14 +1,14 @@
-﻿using MARShop.Infastructure.Repositories.AccountBlogPostRepository;
-using MARShop.Infastructure.Repositories.AccountRepository;
-using MARShop.Infastructure.Repositories.Base;
-using MARShop.Infastructure.Repositories.BlogPostRepository;
-using MARShop.Infastructure.Repositories.BlogPostTagRepository;
-using MARShop.Infastructure.Repositories.CommentRepository;
-using MARShop.Infastructure.Repositories.TagRepository;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Infastructure.Repositories.AccountBlogPostRepository;
+using DevineShop.Infastructure.Repositories.AccountRepository;
+using DevineShop.Infastructure.Repositories.Base;
+using DevineShop.Infastructure.Repositories.BlogPostRepository;
+using DevineShop.Infastructure.Repositories.BlogPostTagRepository;
+using DevineShop.Infastructure.Repositories.CommentRepository;
+using DevineShop.Infastructure.Repositories.TagRepository;
+using DevineShop.Infastructure.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MARShop.Infastructure
+namespace DevineShop.Infastructure
 {
     public static class DDependencies
     {

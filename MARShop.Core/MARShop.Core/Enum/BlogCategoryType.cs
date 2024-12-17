@@ -1,4 +1,4 @@
-﻿namespace MARShop.Core.Enum
+﻿namespace DevineShop.Core.Enum
 {
     public enum BlogCategoryType
     {

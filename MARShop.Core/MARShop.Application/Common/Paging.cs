@@ -1,7 +1,7 @@
 ﻿
 using System.Collections.Generic;
 
-namespace MARShop.Application.Common
+namespace DevineShop.Application.Common
 {
     public class Paging<T>
     {

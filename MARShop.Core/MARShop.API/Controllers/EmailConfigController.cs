@@ -1,10 +1,10 @@
-﻿using MARShop.Application.Handlers.EmailHandler.Commands.Update;
-using MARShop.Application.Handlers.EmailHandler.Queries.Get;
+﻿using DevineShop.Application.Handlers.EmailHandler.Commands.Update;
+using DevineShop.Application.Handlers.EmailHandler.Queries.Get;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace MARShop.API.Controllers
+namespace DevineShop.API.Controllers
 {
     [Route("api/[controller]")]
     public class EmailConfigController : ControllerBase

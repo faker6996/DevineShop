@@ -1,7 +1,7 @@
-﻿using MARShop.Core.Entities;
-using MARShop.Infastructure.Repositories.Base;
+﻿using DevineShop.Core.Entities;
+using DevineShop.Infastructure.Repositories.Base;
 
-namespace MARShop.Infastructure.Repositories.ContactRepository
+namespace DevineShop.Infastructure.Repositories.ContactRepository
 {
     public interface IContactRepository: IRepository<Contact>
     {

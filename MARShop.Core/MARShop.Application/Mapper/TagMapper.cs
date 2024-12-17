@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using MARShop.Application.Handlers.TagHandler.Commands.Create;
-using MARShop.Application.Handlers.TagHandler.Queries.All;
-using MARShop.Core.Entities;
+using DevineShop.Application.Handlers.TagHandler.Commands.Create;
+using DevineShop.Application.Handlers.TagHandler.Queries.All;
+using DevineShop.Core.Entities;
 using System;
 
-namespace MARShop.Application.Mapper
+namespace DevineShop.Application.Mapper
 {
     public class TagMapper
     {

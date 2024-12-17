@@ -1,7 +1,7 @@
-﻿using MARShop.Core.Entities;
-using MARShop.Infastructure.Repositories.Base;
+﻿using DevineShop.Core.Entities;
+using DevineShop.Infastructure.Repositories.Base;
 
-namespace MARShop.Infastructure.Repositories.BlogPostTagRepository
+namespace DevineShop.Infastructure.Repositories.BlogPostTagRepository
 {
     public interface IBlogPostTagRepository : IRepository<BlogPostTag>
     {

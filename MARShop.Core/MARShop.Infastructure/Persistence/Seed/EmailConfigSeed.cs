@@ -1,9 +1,9 @@
-﻿using MARShop.Core.Entities;
+﻿using DevineShop.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
-namespace MARShop.Infastructure.Persistence.Seed
+namespace DevineShop.Infastructure.Persistence.Seed
 {
     public static class EmailConfigSeed
     {

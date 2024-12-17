@@ -1,14 +1,14 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Handlers.TagHandler.Commands.Create;
-using MARShop.Application.Handlers.TagHandler.Commands.Delete;
-using MARShop.Application.Handlers.TagHandler.Commands.Update;
-using MARShop.Application.Handlers.TagHandler.Queries.All;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Handlers.TagHandler.Commands.Create;
+using DevineShop.Application.Handlers.TagHandler.Commands.Delete;
+using DevineShop.Application.Handlers.TagHandler.Commands.Update;
+using DevineShop.Application.Handlers.TagHandler.Queries.All;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MARShop.API.Controllers
+namespace DevineShop.API.Controllers
 {
     [Route("api/[controller]")]
     public class TagController : ControllerBase

@@ -1,5 +1,5 @@
-using MARShop.Infastructure.Persistence;
-using MARShop.Infastructure;
+using DevineShop.Infastructure.Persistence;
+using DevineShop.Infastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,12 +10,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
-using MARShop.Application;
-using MARShop.Application.Middleware;
-using MARShop.Application.Hubs;
+using DevineShop.Application;
+using DevineShop.Application.Middleware;
+using DevineShop.Application.Hubs;
 using System;
 
-namespace MARShop.API
+namespace DevineShop.API
 {
     public class Startup
     {
@@ -40,7 +40,7 @@ namespace MARShop.API
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MARShop.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DevineShop.API", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
@@ -116,7 +116,7 @@ namespace MARShop.API
                 app.UseHsts();
             }
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "MARShop.API v1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DevineShop.API v1"));
 
             app.UseHttpsRedirection();
 

@@ -1,13 +1,13 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Mapper;
-using MARShop.Application.Middleware;
-using MARShop.Core.Entities;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Mapper;
+using DevineShop.Application.Middleware;
+using DevineShop.Core.Entities;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.TagHandler.Commands.Create
+namespace DevineShop.Application.Handlers.TagHandler.Commands.Create
 {
     public class CreateTagCommand : IRequest<Respond<CreateTagRespond>>
     {

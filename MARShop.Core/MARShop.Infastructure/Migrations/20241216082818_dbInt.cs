@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace MARShop.Infastructure.Migrations
+namespace DevineShop.Infastructure.Migrations
 {
     /// <inheritdoc />
     public partial class dbInt : Migration

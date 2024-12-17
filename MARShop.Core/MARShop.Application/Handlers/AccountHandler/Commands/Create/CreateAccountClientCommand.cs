@@ -1,15 +1,15 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Handlers.NotifyHandler.Commands.Create;
-using MARShop.Application.Mapper;
-using MARShop.Application.Middleware;
-using MARShop.Core.Entities;
-using MARShop.Core.Enum;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Handlers.NotifyHandler.Commands.Create;
+using DevineShop.Application.Mapper;
+using DevineShop.Application.Middleware;
+using DevineShop.Core.Entities;
+using DevineShop.Core.Enum;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.AccountHandler.Commands.Create
+namespace DevineShop.Application.Handlers.AccountHandler.Commands.Create
 {
     public class CreateAccountClientCommand : IRequest<Respond>
     {

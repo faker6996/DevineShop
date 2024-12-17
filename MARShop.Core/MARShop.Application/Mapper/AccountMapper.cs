@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using MARShop.Application.Handlers.AccountHandler.Commands.Create;
-using MARShop.Application.Handlers.AccountHandler.Commands.CreateOrUpdate;
-using MARShop.Application.Handlers.AccountHandler.Queries.Paging;
-using MARShop.Core.Entities;
+using DevineShop.Application.Handlers.AccountHandler.Commands.Create;
+using DevineShop.Application.Handlers.AccountHandler.Commands.CreateOrUpdate;
+using DevineShop.Application.Handlers.AccountHandler.Queries.Paging;
+using DevineShop.Core.Entities;
 using System;
 
-namespace MARShop.Application.Mapper
+namespace DevineShop.Application.Mapper
 {
     public class AccountMapper
     {

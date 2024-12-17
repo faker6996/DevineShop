@@ -1,6 +1,6 @@
-﻿using MARShop.Core.Enum;
+﻿using DevineShop.Core.Enum;
 
-namespace MARShop.Application.Share
+namespace DevineShop.Application.Share
 {
     public static class Convert
     {

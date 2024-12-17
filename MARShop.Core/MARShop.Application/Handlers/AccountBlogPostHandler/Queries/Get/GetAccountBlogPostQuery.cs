@@ -1,12 +1,12 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Mapper;
-using MARShop.Core.Entities;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Mapper;
+using DevineShop.Core.Entities;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.AccountBlogPostHandler.Queries.Get
+namespace DevineShop.Application.Handlers.AccountBlogPostHandler.Queries.Get
 {
     public class GetAccountBlogPostQuery : IRequest<Respond<AccountBlogPostRespond>>
     {

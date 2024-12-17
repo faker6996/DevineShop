@@ -1,10 +1,10 @@
-﻿using MARShop.Core.Entities;
-using MARShop.Core.Enum;
+﻿using DevineShop.Core.Entities;
+using DevineShop.Core.Enum;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
-namespace MARShop.Infastructure.Persistence.Seed
+namespace DevineShop.Infastructure.Persistence.Seed
 {
     public static class AccountSeed
     {

@@ -1,5 +1,5 @@
-﻿using MARShop.Core.Common;
-using MARShop.Infastructure.Persistence;
+﻿using DevineShop.Core.Common;
+using DevineShop.Infastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MARShop.Infastructure.Repositories.Base
+namespace DevineShop.Infastructure.Repositories.Base
 {
     public class Repository<T> : IRepository<T> where T : AuditableEntity
     {

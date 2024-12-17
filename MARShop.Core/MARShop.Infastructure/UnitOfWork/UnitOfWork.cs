@@ -1,17 +1,17 @@
-﻿using MARShop.Infastructure.Persistence;
-using MARShop.Infastructure.Repositories.AccountBlogPostRepository;
-using MARShop.Infastructure.Repositories.AccountRepository;
-using MARShop.Infastructure.Repositories.BlogPostRepository;
-using MARShop.Infastructure.Repositories.BlogPostTagRepository;
-using MARShop.Infastructure.Repositories.CommentRepository;
-using MARShop.Infastructure.Repositories.ContactRepository;
-using MARShop.Infastructure.Repositories.EmailConfigRepository;
-using MARShop.Infastructure.Repositories.NotifyRepository;
-using MARShop.Infastructure.Repositories.TagRepository;
+﻿using DevineShop.Infastructure.Persistence;
+using DevineShop.Infastructure.Repositories.AccountBlogPostRepository;
+using DevineShop.Infastructure.Repositories.AccountRepository;
+using DevineShop.Infastructure.Repositories.BlogPostRepository;
+using DevineShop.Infastructure.Repositories.BlogPostTagRepository;
+using DevineShop.Infastructure.Repositories.CommentRepository;
+using DevineShop.Infastructure.Repositories.ContactRepository;
+using DevineShop.Infastructure.Repositories.EmailConfigRepository;
+using DevineShop.Infastructure.Repositories.NotifyRepository;
+using DevineShop.Infastructure.Repositories.TagRepository;
 using System;
 using System.Threading.Tasks;
 
-namespace MARShop.Infastructure.UnitOfWork
+namespace DevineShop.Infastructure.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {

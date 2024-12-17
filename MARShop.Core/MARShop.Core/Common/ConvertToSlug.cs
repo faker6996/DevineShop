@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace MARShop.Core.Common
+namespace DevineShop.Core.Common
 {
     public static class ConvertToSlug
     {

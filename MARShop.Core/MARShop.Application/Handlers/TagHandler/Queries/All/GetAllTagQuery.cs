@@ -1,14 +1,14 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Enum;
-using MARShop.Application.Mapper;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Enum;
+using DevineShop.Application.Mapper;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.TagHandler.Queries.All
+namespace DevineShop.Application.Handlers.TagHandler.Queries.All
 {
     public class GetAllTagQuery : IRequest<Respond<IList<TagRespond>>>
     {

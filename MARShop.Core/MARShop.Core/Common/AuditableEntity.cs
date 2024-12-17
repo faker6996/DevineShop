@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MARShop.Core.Common
+namespace DevineShop.Core.Common
 {
     public class AuditableEntity
     {

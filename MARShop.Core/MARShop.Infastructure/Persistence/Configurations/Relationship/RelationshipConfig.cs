@@ -1,7 +1,7 @@
-﻿using MARShop.Core.Entities;
+﻿using DevineShop.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace MARShop.Infastructure.Persistence.Configurations.Relationship
+namespace DevineShop.Infastructure.Persistence.Configurations.Relationship
 {
     internal static class RelationshipConfig
     {

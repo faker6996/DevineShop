@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace MARShop.Application
+namespace DevineShop.Application
 {
     public static class DDependencies
     {

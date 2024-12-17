@@ -1,10 +1,10 @@
-﻿using MARShop.Application.Common;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.NotifyHandler.Commands.Update
+namespace DevineShop.Application.Handlers.NotifyHandler.Commands.Update
 {
     public class ReadAllNotifyCommand : IRequest<Respond>
     {

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using MARShop.Application.Handlers.CommentHandler.Commands.Create;
-using MARShop.Core.Entities;
+using DevineShop.Application.Handlers.CommentHandler.Commands.Create;
+using DevineShop.Core.Entities;
 using System;
 
-namespace MARShop.Application.Mapper
+namespace DevineShop.Application.Mapper
 {
     public class CommentMapper
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace MARShop.Core.Common
+namespace DevineShop.Core.Common
 {
     public class GeneratePass
     {

@@ -1,6 +1,6 @@
-﻿using MARShop.Core.Common;
+﻿using DevineShop.Core.Common;
 
-namespace MARShop.Core.Entities
+namespace DevineShop.Core.Entities
 {
     public class EmailConfig: AuditableEntity
     {

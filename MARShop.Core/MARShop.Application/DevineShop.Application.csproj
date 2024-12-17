@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MARShop.Core\MARShop.Core.csproj" />
-    <ProjectReference Include="..\MARShop.Infastructure\MARShop.Infastructure.csproj" />
+    <ProjectReference Include="..\DevineShop.Core\DevineShop.Core.csproj" />
+    <ProjectReference Include="..\DevineShop.Infastructure\DevineShop.Infastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

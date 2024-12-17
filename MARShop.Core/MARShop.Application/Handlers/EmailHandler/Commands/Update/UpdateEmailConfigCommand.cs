@@ -1,11 +1,11 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Middleware;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Middleware;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.EmailHandler.Commands.Update
+namespace DevineShop.Application.Handlers.EmailHandler.Commands.Update
 {
     public class UpdateEmailConfigCommand:IRequest<Respond>
     {

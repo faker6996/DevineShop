@@ -1,4 +1,4 @@
-﻿using MARShop.Core.Common;
+﻿using DevineShop.Core.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace MARShop.Infastructure.Repositories.Base
+namespace DevineShop.Infastructure.Repositories.Base
 {
     public interface IRepository<T> where T : AuditableEntity
     {

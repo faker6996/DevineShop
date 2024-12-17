@@ -1,5 +1,5 @@
-﻿using MARShop.Application.Common;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace MARShop.Application.Handlers.FileHandler.Upload
+namespace DevineShop.Application.Handlers.FileHandler.Upload
 {
     public class UploadFileCommand : IRequest<Respond<UploadFileRespond>>
     {

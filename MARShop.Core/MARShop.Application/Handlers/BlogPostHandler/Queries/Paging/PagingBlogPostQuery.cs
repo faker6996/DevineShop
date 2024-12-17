@@ -1,8 +1,8 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Enum;
-using MARShop.Core.Common;
-using MARShop.Core.Entities;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Enum;
+using DevineShop.Core.Common;
+using DevineShop.Core.Entities;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Paging
+namespace DevineShop.Application.Handlers.BlogPostHandler.Queries.Paging
 {
     public class PagingBlogPostQuery : IRequest<Respond<Paging<BlogPostRespond>>>
     {

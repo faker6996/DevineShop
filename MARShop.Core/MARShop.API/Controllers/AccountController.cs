@@ -1,15 +1,15 @@
-﻿using MARShop.Application.Handlers.AccountHandler.Commands.ChangePassword;
-using MARShop.Application.Handlers.AccountHandler.Commands.Create;
-using MARShop.Application.Handlers.AccountHandler.Commands.Delete;
-using MARShop.Application.Handlers.AccountHandler.Queries.Auth;
-using MARShop.Application.Handlers.AccountHandler.Queries.Paging;
+﻿using DevineShop.Application.Handlers.AccountHandler.Commands.ChangePassword;
+using DevineShop.Application.Handlers.AccountHandler.Commands.Create;
+using DevineShop.Application.Handlers.AccountHandler.Commands.Delete;
+using DevineShop.Application.Handlers.AccountHandler.Queries.Auth;
+using DevineShop.Application.Handlers.AccountHandler.Queries.Paging;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
-namespace MARShop.API.Controllers
+namespace DevineShop.API.Controllers
 {
     [Route("api/[controller]")]
     public class AccountController : ControllerBase

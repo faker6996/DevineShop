@@ -1,11 +1,11 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Middleware;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Middleware;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Delete
+namespace DevineShop.Application.Handlers.BlogPostHandler.Commands.Delete
 {
     public class DeleteBlogPostCommand : IRequest<Respond>
     {

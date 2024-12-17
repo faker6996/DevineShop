@@ -1,6 +1,6 @@
-﻿using MARShop.Application.Enum;
+﻿using DevineShop.Application.Enum;
 
-namespace MARShop.Application.Common
+namespace DevineShop.Application.Common
 {
     public class Respond
     {

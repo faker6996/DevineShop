@@ -1,10 +1,10 @@
-﻿using MARShop.Application.Handlers.NotifyHandler.Commands.Update;
-using MARShop.Application.Handlers.NotifyHandler.Queries.Paging;
+﻿using DevineShop.Application.Handlers.NotifyHandler.Commands.Update;
+using DevineShop.Application.Handlers.NotifyHandler.Queries.Paging;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace MARShop.API.Controllers
+namespace DevineShop.API.Controllers
 {
     [Route("api/[controller]")]
 

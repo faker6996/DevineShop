@@ -1,14 +1,14 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Mapper;
-using MARShop.Application.Middleware;
-using MARShop.Core.Entities;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Mapper;
+using DevineShop.Application.Middleware;
+using DevineShop.Core.Entities;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Update
+namespace DevineShop.Application.Handlers.BlogPostHandler.Commands.Update
 {
     public class UpdateBlogPostCommand : IRequest<Respond>
     {

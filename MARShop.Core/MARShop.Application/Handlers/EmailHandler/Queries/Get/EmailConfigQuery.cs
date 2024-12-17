@@ -1,12 +1,12 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Mapper;
-using MARShop.Application.Middleware;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Mapper;
+using DevineShop.Application.Middleware;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.EmailHandler.Queries.Get
+namespace DevineShop.Application.Handlers.EmailHandler.Queries.Get
 {
     public class EmailConfigQuery: IRequest<Respond<EmailConfigRespond>>
     {

@@ -1,15 +1,15 @@
-﻿using MARShop.Application.Common;
+﻿using DevineShop.Application.Common;
 using MediatR;
 using System.Collections.Generic;
 using System;
 using System.Threading.Tasks;
 using System.Threading;
-using MARShop.Infastructure.UnitOfWork;
-using MARShop.Application.Mapper;
-using MARShop.Application.Middleware;
+using DevineShop.Infastructure.UnitOfWork;
+using DevineShop.Application.Mapper;
+using DevineShop.Application.Middleware;
 using System.Linq;
 
-namespace MARShop.Application.Handlers.BlogPostHandler.Queries.Get
+namespace DevineShop.Application.Handlers.BlogPostHandler.Queries.Get
 {
     public class GetBlogPostBySlugQuery : IRequest<Respond<BlogPostBySlugRespond>>
     {

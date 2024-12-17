@@ -1,5 +1,5 @@
-﻿using MARShop.Application.Common;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
@@ -9,12 +9,12 @@ using System.Text;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using MARShop.Core.Entities;
+using DevineShop.Core.Entities;
 using Microsoft.Extensions.Configuration;
-using MARShop.Application.Middleware;
+using DevineShop.Application.Middleware;
 using Microsoft.Extensions.Logging;
 
-namespace MARShop.Application.Handlers.AccountHandler.Queries.Auth
+namespace DevineShop.Application.Handlers.AccountHandler.Queries.Auth
 {
     public class AuthQuery : IRequest<Respond<AuthRespond>>
     {

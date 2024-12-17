@@ -1,7 +1,7 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Handlers.BlogPostHandler.Queries.Get;
-using MARShop.Application.Mapper;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Handlers.BlogPostHandler.Queries.Get;
+using DevineShop.Application.Mapper;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.NotifyHandler.Queries.Paging
+namespace DevineShop.Application.Handlers.NotifyHandler.Queries.Paging
 {
     public class PagingNofityQuery : IRequest<Respond<NotifyPaging>>
     {

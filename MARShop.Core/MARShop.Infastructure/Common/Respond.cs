@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MARShop.Infastructure.Common
+namespace DevineShop.Infastructure.Common
 {
     public class Respond<T> where T : class
     {

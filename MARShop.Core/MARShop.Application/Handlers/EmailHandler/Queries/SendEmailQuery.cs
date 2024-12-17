@@ -1,12 +1,12 @@
-﻿using MARShop.Application.Common;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.Net;
 using System.Net.Mail;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.EmailHandler.Queries
+namespace DevineShop.Application.Handlers.EmailHandler.Queries
 {
     public class SendEmailQuery : IRequest<Respond>
     {

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using MARShop.Application.Handlers.EmailHandler.Queries.Get;
-using MARShop.Core.Entities;
+using DevineShop.Application.Handlers.EmailHandler.Queries.Get;
+using DevineShop.Core.Entities;
 using System;
 
-namespace MARShop.Application.Mapper
+namespace DevineShop.Application.Mapper
 {
     public class EmailConfigMapper
     {

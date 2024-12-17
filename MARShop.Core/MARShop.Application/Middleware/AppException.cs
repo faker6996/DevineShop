@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace MARShop.Application.Middleware
+namespace DevineShop.Application.Middleware
 {
     public class AppException:Exception
     {

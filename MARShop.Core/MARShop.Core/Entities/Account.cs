@@ -1,7 +1,7 @@
-﻿using MARShop.Core.Common;
+﻿using DevineShop.Core.Common;
 using System.Collections.Generic;
 
-namespace MARShop.Core.Entities
+namespace DevineShop.Core.Entities
 {
     public class Account : AuditableEntity
     {

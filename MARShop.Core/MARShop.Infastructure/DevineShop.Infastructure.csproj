@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MARShop.Core\MARShop.Core.csproj" />
+    <ProjectReference Include="..\DevineShop.Core\DevineShop.Core.csproj" />
   </ItemGroup>
 
 </Project>

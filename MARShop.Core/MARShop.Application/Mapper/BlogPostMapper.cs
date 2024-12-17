@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using MARShop.Application.Handlers.BlogPostHandler.Commands.Create;
-using MARShop.Application.Handlers.BlogPostHandler.Commands.Update;
-using MARShop.Application.Handlers.BlogPostHandler.Queries.Get;
-using MARShop.Core.Entities;
+using DevineShop.Application.Handlers.BlogPostHandler.Commands.Create;
+using DevineShop.Application.Handlers.BlogPostHandler.Commands.Update;
+using DevineShop.Application.Handlers.BlogPostHandler.Queries.Get;
+using DevineShop.Core.Entities;
 using System;
 
-namespace MARShop.Application.Mapper
+namespace DevineShop.Application.Mapper
 {
     public class BlogPostMapper
     {

@@ -1,11 +1,11 @@
-﻿using MARShop.Application.Enum;
-using MARShop.Application.Handlers.FileHandler.Upload;
+﻿using DevineShop.Application.Enum;
+using DevineShop.Application.Handlers.FileHandler.Upload;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace MARShop.API.Controllers
+namespace DevineShop.API.Controllers
 {
     [Route("api/[controller]")]
     public class FileController : ControllerBase

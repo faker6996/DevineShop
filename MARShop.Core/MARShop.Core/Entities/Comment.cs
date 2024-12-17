@@ -1,7 +1,7 @@
-﻿using MARShop.Core.Common;
+﻿using DevineShop.Core.Common;
 using System;
 
-namespace MARShop.Core.Entities
+namespace DevineShop.Core.Entities
 {
     public class Comment:AuditableEntity
     {

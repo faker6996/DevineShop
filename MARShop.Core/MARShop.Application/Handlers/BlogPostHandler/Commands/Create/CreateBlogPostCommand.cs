@@ -1,11 +1,11 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Handlers.EmailHandler.Queries;
-using MARShop.Application.Mapper;
-using MARShop.Application.Middleware;
-using MARShop.Application.Share;
-using MARShop.Core.Common;
-using MARShop.Core.Entities;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Handlers.EmailHandler.Queries;
+using DevineShop.Application.Mapper;
+using DevineShop.Application.Middleware;
+using DevineShop.Application.Share;
+using DevineShop.Core.Common;
+using DevineShop.Core.Entities;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.BlogPostHandler.Commands.Create
+namespace DevineShop.Application.Handlers.BlogPostHandler.Commands.Create
 {
     public class CreateBlogPostCommand : IRequest<Respond>
     {

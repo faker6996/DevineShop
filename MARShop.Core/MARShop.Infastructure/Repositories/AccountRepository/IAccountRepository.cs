@@ -1,9 +1,9 @@
-﻿using MARShop.Core.Entities;
-using MARShop.Infastructure.Common;
-using MARShop.Infastructure.Repositories.Base;
+﻿using DevineShop.Core.Entities;
+using DevineShop.Infastructure.Common;
+using DevineShop.Infastructure.Repositories.Base;
 using System.Threading.Tasks;
 
-namespace MARShop.Infastructure.Repositories.AccountRepository
+namespace DevineShop.Infastructure.Repositories.AccountRepository
 {
     public interface IAccountRepository : IRepository<Account>
     {

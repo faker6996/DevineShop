@@ -1,8 +1,8 @@
-﻿using MARShop.Core.Entities;
+﻿using DevineShop.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace MARShop.Infastructure.Persistence.Configurations.DataType
+namespace DevineShop.Infastructure.Persistence.Configurations.DataType
 {
     internal class BlogPostTagConfig : IEntityTypeConfiguration<BlogPostTag>
     {

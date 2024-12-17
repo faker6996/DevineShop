@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using NLog.Web;
 using System.IO;
 
-namespace MARShop.API
+namespace DevineShop.API
 {
     public class Program
     {

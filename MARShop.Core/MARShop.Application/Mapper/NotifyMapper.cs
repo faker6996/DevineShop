@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using MARShop.Application.Handlers.NotifyHandler.Commands.Create;
-using MARShop.Application.Handlers.NotifyHandler.Queries.Paging;
-using MARShop.Core.Entities;
+using DevineShop.Application.Handlers.NotifyHandler.Commands.Create;
+using DevineShop.Application.Handlers.NotifyHandler.Queries.Paging;
+using DevineShop.Core.Entities;
 using System;
 
-namespace MARShop.Application.Mapper
+namespace DevineShop.Application.Mapper
 {
     public class NotifyMapper
     {

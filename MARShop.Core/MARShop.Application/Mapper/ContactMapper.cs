@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using MARShop.Application.Handlers.ContactHandler.Queries.Get;
-using MARShop.Core.Entities;
+using DevineShop.Application.Handlers.ContactHandler.Queries.Get;
+using DevineShop.Core.Entities;
 using System;
 
-namespace MARShop.Application.Mapper
+namespace DevineShop.Application.Mapper
 {
     public class ContactMapper
     {

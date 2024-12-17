@@ -1,8 +1,8 @@
 ﻿
-using MARShop.Core.Entities;
-using MARShop.Infastructure.Repositories.Base;
+using DevineShop.Core.Entities;
+using DevineShop.Infastructure.Repositories.Base;
 
-namespace MARShop.Infastructure.Repositories.AccountBlogPostRepository
+namespace DevineShop.Infastructure.Repositories.AccountBlogPostRepository
 {
     public interface IAccountBlogPostRepository: IRepository<AccountBlogPost>
     {

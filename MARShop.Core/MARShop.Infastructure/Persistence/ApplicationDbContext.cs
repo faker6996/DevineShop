@@ -1,12 +1,12 @@
-﻿using MARShop.Core.Common;
-using MARShop.Core.Entities;
-using MARShop.Infastructure.Persistence.Configurations.Relationship;
-using MARShop.Infastructure.Persistence.Seed;
+﻿using DevineShop.Core.Common;
+using DevineShop.Core.Entities;
+using DevineShop.Infastructure.Persistence.Configurations.Relationship;
+using DevineShop.Infastructure.Persistence.Seed;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using System;
 
-namespace MARShop.Infastructure.Persistence
+namespace DevineShop.Infastructure.Persistence
 {
     public class ApplicationDbContext : DbContext
     {

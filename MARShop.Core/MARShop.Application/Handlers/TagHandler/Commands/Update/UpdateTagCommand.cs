@@ -1,11 +1,11 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Middleware;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Middleware;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.TagHandler.Commands.Update
+namespace DevineShop.Application.Handlers.TagHandler.Commands.Update
 {
     public class UpdateTagCommand : IRequest<Respond>
     {

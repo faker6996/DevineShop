@@ -1,14 +1,14 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Handlers.EmailHandler.Queries;
-using MARShop.Application.Middleware;
-using MARShop.Core.Common;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Handlers.EmailHandler.Queries;
+using DevineShop.Application.Middleware;
+using DevineShop.Core.Common;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.AccountHandler.Commands.ChangePassword
+namespace DevineShop.Application.Handlers.AccountHandler.Commands.ChangePassword
 {
     public class ResetPasswordCommand : IRequest<Respond>
     {

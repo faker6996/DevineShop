@@ -1,15 +1,15 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Mapper;
-using MARShop.Core.Common;
-using MARShop.Core.Enum;
-using MARShop.Infastructure.UnitOfWork;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Mapper;
+using DevineShop.Core.Common;
+using DevineShop.Core.Enum;
+using DevineShop.Infastructure.UnitOfWork;
 using MediatR;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Handlers.AccountHandler.Queries.Paging
+namespace DevineShop.Application.Handlers.AccountHandler.Queries.Paging
 {
     public class PagingAccountQuery : IRequest<Respond<Paging<AccountRespond>>>
     {

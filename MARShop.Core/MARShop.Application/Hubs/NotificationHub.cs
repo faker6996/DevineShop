@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Hubs
+namespace DevineShop.Application.Hubs
 {
     public class NotificationHub : Hub
     {

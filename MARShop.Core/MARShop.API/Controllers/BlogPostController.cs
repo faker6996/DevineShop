@@ -1,17 +1,17 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Handlers.AccountBlogPostHandler.Queries.Get;
-using MARShop.Application.Handlers.BlogPostHandler.Commands.Create;
-using MARShop.Application.Handlers.BlogPostHandler.Commands.Delete;
-using MARShop.Application.Handlers.BlogPostHandler.Commands.Update;
-using MARShop.Application.Handlers.BlogPostHandler.Queries.Get;
-using MARShop.Application.Handlers.BlogPostHandler.Queries.Paging;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Handlers.AccountBlogPostHandler.Queries.Get;
+using DevineShop.Application.Handlers.BlogPostHandler.Commands.Create;
+using DevineShop.Application.Handlers.BlogPostHandler.Commands.Delete;
+using DevineShop.Application.Handlers.BlogPostHandler.Commands.Update;
+using DevineShop.Application.Handlers.BlogPostHandler.Queries.Get;
+using DevineShop.Application.Handlers.BlogPostHandler.Queries.Paging;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
-namespace MARShop.API.Controllers
+namespace DevineShop.API.Controllers
 {
     [Route("api/[controller]")]
     public class BlogPostController : ControllerBase

@@ -1,12 +1,12 @@
-﻿using MARShop.Application.Common;
-using MARShop.Application.Handlers.CommentHandler.Commands.Create;
-using MARShop.Application.Handlers.CommentHandler.Queries.Get;
+﻿using DevineShop.Application.Common;
+using DevineShop.Application.Handlers.CommentHandler.Commands.Create;
+using DevineShop.Application.Handlers.CommentHandler.Queries.Get;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace MARShop.API.Controllers
+namespace DevineShop.API.Controllers
 {
     [Route("api/[controller]")]
     public class CommentController : ControllerBase

@@ -1,4 +1,4 @@
-﻿namespace MARShop.Application.Enum
+﻿namespace DevineShop.Application.Enum
 {
     public enum RespondStatus
     {

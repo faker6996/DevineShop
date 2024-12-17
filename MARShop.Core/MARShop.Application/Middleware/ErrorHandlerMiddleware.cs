@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace MARShop.Application.Middleware
+namespace DevineShop.Application.Middleware
 {
     public class ErrorHandlerMiddleware
     {

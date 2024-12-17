@@ -1,13 +1,13 @@
-﻿using MARShop.Core.Common;
-using MARShop.Core.Entities;
-using MARShop.Infastructure.Common;
-using MARShop.Infastructure.Persistence;
-using MARShop.Infastructure.Repositories.Base;
+﻿using DevineShop.Core.Common;
+using DevineShop.Core.Entities;
+using DevineShop.Infastructure.Common;
+using DevineShop.Infastructure.Persistence;
+using DevineShop.Infastructure.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MARShop.Infastructure.Repositories.AccountRepository
+namespace DevineShop.Infastructure.Repositories.AccountRepository
 {
     public class AccountRepository : Repository<Account>, IAccountRepository
     {

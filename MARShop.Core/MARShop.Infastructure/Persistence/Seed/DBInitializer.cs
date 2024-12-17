@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace MARShop.Infastructure.Persistence.Seed
+namespace DevineShop.Infastructure.Persistence.Seed
 {
     public static class DBInitializer
     {
